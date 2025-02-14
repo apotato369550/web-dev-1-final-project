@@ -8,14 +8,14 @@
 <body>
     <h1>Welcome to Cebu Best Value Trading!</h1>
     <h2>Login</h2>
-    <form action="login.inc.php" method="post">
+    <form action="includes/login.inc.php" method="post">
         <label for="username">Username: </label>
         <input type="text" name="username">
         <br>
         <label for="password">Password: </label>
         <input type="password" name="password">
         <br>
-        <input type="submit" name="Login">
+        <input type="submit" name="login">
     </form>
 </body>
 </html>

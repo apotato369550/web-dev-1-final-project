@@ -8,12 +8,15 @@
 <body>
     <h1>Welcome to Cebu Best Value Trading!</h1>
     <h2>Register</h2>
-    <form action="register.inc.php" method="post">
+    <form action="includes/register.inc.php" method="post">
         <label for="username">Username: </label>
         <input type="text" name="username">
         <br>
         <label for="password">Password: </label>
         <input type="password" name="password">
+        <br>
+        <label for="repeat-password">Repeat Password: </label>
+        <input type="password" name="repeat-password">
         <br>
         <label for="account-type">Account Type</label>
         <select name="account-type">
@@ -22,7 +25,7 @@
             <option value="client">Client</option>
         </select>
         <br>
-        <input type="submit" name="Login">
+        <input type="submit" name="register">
         <p>Note: Registrants must undergo admin approval</p>
     </form>
 </body>

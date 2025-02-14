@@ -7,9 +7,8 @@ $databaseName = "web_dev_finals_project";
 
 $connection = mysqli_connect($serverName, $databaseUsername, $databasePassword, $databaseName);
 
-// uxladi>{ko0YYEUt
-
-if (!$connection){
-	die("Connection failed: ".mysqli_connect_error());
-} 
 	
+if (!$connection){
+	echo "Error: Database connection Failed";
+	exit("Connection failed: ".mysqli_connect_error());
+} 
