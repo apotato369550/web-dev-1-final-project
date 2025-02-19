@@ -28,5 +28,6 @@
         <input type="submit" name="register">
         <p>Note: Registrants must undergo admin approval</p>
     </form>
+    <a href="login.php">Login</a>
 </body>
 </html>
