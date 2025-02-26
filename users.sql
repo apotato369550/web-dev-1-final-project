@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2025 at 04:55 AM
+-- Generation Time: Feb 26, 2025 at 05:10 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,6 +32,10 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `user_type` enum('admin','worker','client') NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `phone_number` varchar(50) NOT NULL,
   `application_status` enum('approved','pending','rejected') NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -39,8 +43,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password`, `user_type`, `application_status`) VALUES
-(2, 'apotato369', '$2y$10$.DudDUHpzr0YUYzQ66R17uw/5WwgQbusUY0Eha3ckIn1G7cZTeCIK', 'admin', 'approved');
+INSERT INTO `users` (`user_id`, `username`, `password`, `user_type`, `first_name`, `last_name`, `email`, `phone_number`, `application_status`) VALUES
+(12, 'apotato369', '$2y$10$LBO8bWtTqMrAikit3lZUZ.vWevDmpSIa5F2Lg7a8x6yFV84H0uke2', 'admin', 'John Andre', 'Yap', 'apotato369@gmail.com', '09150443019', 'approved');
 
 --
 -- Indexes for dumped tables
@@ -60,7 +64,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

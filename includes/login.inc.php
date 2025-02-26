@@ -4,26 +4,19 @@ $username = $_POST["username"];
 $password = $_POST["password"];
 $approvedStatus = "approved";
 
+if (!isset($_POST["login"])) {
+    header("Location: ../index.php?error=nosubmit");
+    exit();
+}
+
 include "dbh.inc.php";
-
-if (empty($username)) {
-    echo "Error: Empty username";
-    header("Location: ../index.php?error=login");
-    exit();
-}
-
-if (empty($password)) {
-    echo "Error: Missing password";
-    header("Location: ../index.php?error=login");
-    exit();
-}
 
 $stmt = mysqli_stmt_init($connection);
 $sql = "SELECT * from users WHERE username=? AND application_status=?";
 
 if (!mysqli_stmt_prepare($stmt, $sql)) {
     echo "Error when preparing SQL statement.";
-    header("Location: ../index.php?error=login");
+    header("Location: ../index.php?error=sqlprepare");
     exit();
 }
 
