@@ -1,3 +1,47 @@
 body {
-    font-family: "Lucida Console", "Courier New", monospace;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #efefef;
 }
+
+.index-main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.index-login-container {
+  width: 50vw;
+  height: 100vh;
+  margin: 0;
+}
+
+.index-image-container {
+  width: 50vw;
+  height: 100vh;
+  margin: 0;
+  background-image: url("assets/cebu_city.jpg");
+  background-size: cover;
+}
+
+.index-login {
+  margin: 30vh 7vw;
+}
+
+.index-login-container h1 {
+  font-size: 5.5em;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.index-other-buttons {
+    margin: auto;
+    background-color: #efefef;
+    width: 30vw;
+    height: 45vh;
+}
+
+
