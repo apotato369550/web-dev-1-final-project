@@ -1,8 +1,8 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #efefef;
+  background-color: #d9d9d9;
 }
 
 .index-main-container {
@@ -15,13 +15,13 @@ body {
 }
 
 .index-login-container {
-  width: 50vw;
+  width: 40vw;
   height: 100vh;
   margin: 0;
 }
 
 .index-image-container {
-  width: 50vw;
+  width: 60vw;
   height: 100vh;
   margin: 0;
   background-image: url("assets/cebu_city.jpg");
@@ -29,19 +29,266 @@ body {
 }
 
 .index-login {
-  margin: 30vh 7vw;
+  margin: 17vh 7vw;
 }
 
 .index-login-container h1 {
-  font-size: 5.5em;
+  font-size: 5.5rem;
+  margin-bottom: 17px;
   font-family: "Courier New", Courier, monospace;
 }
 
-.index-other-buttons {
-    margin: auto;
-    background-color: #efefef;
-    width: 30vw;
-    height: 45vh;
+.index-login input {
+  width: 22vw;
+  padding: 12px;
+  margin: 5px;
+  font-size: 1.15rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
+.index-login button {
+  width: 10vw;
+  padding: 12px;
+  margin: 5px;
+  font-size: 1.15rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
+.index-login button:hover {
+  background-color: #efefef;
+  border: 1px solid black;
+}
+
+.index-button-container {
+  margin: 23vh auto;
+  background-color: white;
+  width: 22vw;
+  padding: 3vh 3vw;
+  border-radius: 12px;
+  background-color: rgb(255, 255, 255, 0.75);
+  text-align: center;
+}
+
+.index-button-container h2 {
+  font-size: 1.5rem;
+}
+
+.index-button-container button {
+  width: 10vw;
+  padding: 12px;
+  margin: 5px;
+  font-size: 1.15rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.register-background-image-container {
+  background-image: url("assets/cebu_city.jpg");
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.register-container {
+  display: flex;
+  flex-direction: row;
+  margin: 23vh auto;
+  background-color: white;
+  width: 50vw;
+  padding: 3vh 3vw;
+  border-radius: 12px;
+  background-color: rgb(255, 255, 255, 0.75);
+  text-align: center;
+}
+
+.register-title-container {
+  width: 50%;
+  text-align: left;
+  margin: 0px 1vw;
+}
+
+.register-title-container h1{
+  font-size: 5rem;
+  margin-bottom: 0;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.register-form-container {
+  width: 50%;
+  text-align: left;
+  margin: 0px 1vw;
+}
+
+.register-form-container h2 {
+  font-size: 2.5rem;
+}
+
+.register-form-container input {
+  padding: 12px;
+  margin: 5px;
+  width: 90%;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.register-form-duo {
+  display: flex;
+  flex-direction: row;
+}
+
+.register-form-container select {
+  width: 10vw;
+  padding: 12px;
+  margin: 5px;
+  font-size: 1.15rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.register-form-container button {
+  width: 10vw;
+  padding: 12px;
+  margin: 5px;
+  font-size: 1.15rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.check-status-image-container {
+  background-image: url("assets/cebu_city.jpg");
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.check-status-container {
+  display: flex;
+  flex-direction: row;
+  margin: 23vh auto;
+  background-color: white;
+  width: 50vw;
+  padding: 3vh 3vw;
+  border-radius: 12px;
+  background-color: rgb(255, 255, 255, 0.75);
+  text-align: center;
+  align-items: center;
+}
+
+.check-status-title-container {
+  width: 50%;
+  text-align: left;
+  margin: 0px 1vw;
+}
+
+.check-status-form-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0px 1vw;
+}
+
+.check-status-title-container h1 {
+  font-size: 5rem;
+  margin-bottom: 0;
+  font-family: "Courier New", Courier, monospace;
+  margin-bottom: 5vh;
+}
+
+.check-status-form-container input {
+  padding: 12px;
+  margin: 5px;
+  width: 93%;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+} 
+
+.check-status-form-container button {
+  width: 10vw;
+  padding: 12px;
+  margin: 5px;
+  font-size: 1.15rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.check-status-approved {
+  color: green;
+}
+
+.check-status-pending {
+  color: yellow;
+}
+
+.check-status-rejected {
+  color: red;
+}
+
+@media only screen and (max-width: 1200px) {
+  .index-main-container {
+    flex-direction: column;
+  }
+  .index-login-container {
+    width: 100vw;
+  }
+  .index-image-container {
+    width: 100vw;
+  }
+  .index-login {
+    margin: 23vh 10vw;
+  }
+  .index-login input {
+    width: 75vw;
+  }
+  .index-login button {
+    width: 50vw;
+  }
+  .register-background-image-container {
+    height: 100%;
+  }
+  .register-container {
+    flex-direction: column;
+  }
+  .register-title-container {
+    width: 50vw;
+  }
+  .register-form-container {
+    width: 100vw;
+  }
+  .register-form-container input {
+    width: 45%;
+  }
+  .register-form-container button {
+    width: 45%;
+  }
+  .register-form-container select {
+    width: 45%;
+  }
+  .register-form-duo {
+    flex-direction: column;
+  }
+  .check-status-container {
+    flex-direction: column;
+  }
+  .check-status-title-container {
+    width: 100%;
+  }
+  .check-status-form-container {
+    width: 100%;
+  }
+}

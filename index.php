@@ -12,22 +12,24 @@
             <div class="index-login">
                 <h1>Cebu Best Value Trading!</h1>
                 <form action="includes/login.inc.php" method="post">
-                    <label for="username">Username: </label>
-                    <input type="text" name="username" required>
+                    <input type="text" name="username" placeholder="Username" required>
                     <br>
-                    <label for="password">Password: </label>
-                    <input type="password" name="password" required>
+                    <input type="password" name="password" placeholder="Password" required>
                     <br>
                     <button type="submit" name="login">Login</button>
                 </form>
             </div>
         </div>
         <div class="index-image-container">
-            <div class="index-other-buttons">
+            <div class="index-button-container">
                 <h2>New user?</h2>
-                <a href="register.php">Register</a>
-                <h2>Already registered? View your application status!</h2>
-                <a href="check-status.php">Check Status</a>
+                <form action="register.php">
+                    <button type="submit">Register</button>
+                </form>
+                <h2>Already registered? <br> View your application status!</h2>
+                <form action="check-status.php">
+                    <button>Check Status</button>
+                </form>
             </div>
         </div>
     </div>
