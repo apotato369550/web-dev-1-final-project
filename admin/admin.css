@@ -1,0 +1,100 @@
+body {
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #efefef;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #d9d9d9;
+    border-bottom: 3px solid #999999;
+}
+
+.nav-title {
+    width: 50vw;
+    padding: 5px 20px;
+}
+
+.nav-title h1 {
+    font-size: 2.5rem;
+    font-weight: 1600;
+    font-family: "Courier New", Courier, monospace;
+}
+
+.nav-dropdown-menu {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-dropdown-container {
+    margin: auto;
+    float: right;
+}
+
+.nav-dropdown-button-container button {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.nav-dropdown-button {
+    height: 100%;
+    background-color: #efefef;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    border: 3px solid #999999;
+}
+
+.nav-dropdown-button:hover {
+    background-color: white;
+} 
+
+.nav-dropdown-button-arrow {
+    width: 50px;
+    height: 50px;
+}
+
+.nav-dropdown-button-pfp {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.nav-dropdown-button p {
+    margin: 10px 3px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.25rem;
+    font-weight: 1000;
+}
+
+.nav-dropdown-content {
+    display: none;
+    z-index: 1;
+    position: absolute;
+    margin-top: 0px;
+}
+
+.nav-dropdown-content ul {
+    list-style-type: none;
+}
+
+.nav-dropdown-content li {
+    padding: 10px;
+    background-color: #efefef;
+    border: 3px solid #999999;
+    border-radius: 12px;
+}
+
+.nav-dropdown-content a {
+    text-decoration: none;
+    color: black;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.25rem;
+    font-weight: 1000;
+    margin: 0px 0px 15px 0px;
+}
