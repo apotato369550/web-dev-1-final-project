@@ -46,6 +46,7 @@ if (!password_verify($password, $row["password"])) {
 
 if ($row["user_type"] === "admin") {
     session_start();
+    $_SESSION["user_id"] = $row["user_id"];
     $_SESSION["user_type"] = $row["user_type"];
     $_SESSION["username"] = $username;
     header("Location: ../admin/admin.php");
@@ -53,6 +54,7 @@ if ($row["user_type"] === "admin") {
 
 if ($row["user_type"] === "worker") {
     session_start();
+    $_SESSION["user_id"] = $row["user_id"];
     $_SESSION["user_type"] = $row["user_type"];
     $_SESSION["username"] = $username;
     header("Location: ../worker/worker.php");
@@ -61,6 +63,7 @@ if ($row["user_type"] === "worker") {
 
 if ($row["user_type"] === "client") {
     session_start();
+    $_SESSION["user_id"] = $row["user_id"];
     $_SESSION["user_type"] = $row["user_type"];
     $_SESSION["username"] = $username;
     header("Location: ../cashier/client.php");
