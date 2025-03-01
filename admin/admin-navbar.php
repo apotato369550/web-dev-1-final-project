@@ -28,7 +28,7 @@
             <div class="nav-dropdown-content">
                 <ul>
                     <li>
-                        <a href="#">Edit Profile</a>
+                        <a href="edit-profile.php">Edit Profile</a>
                     </li>
                     <li>
                         <a href="#">Manage Account</a>
@@ -43,7 +43,7 @@
                         <a href="#">Manage Announcements</a>
                     </li>
                     <li>
-                        <a href="#">Logout</a>
+                        <a href="../includes/logout.inc.php">Logout</a>
                     </li>
                 </ul>
             </div>
