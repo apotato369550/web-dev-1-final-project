@@ -24,7 +24,7 @@ mysqli_stmt_bind_param($stmt, "ss", $username, $approvedStatus);
 
 if (!mysqli_stmt_execute($stmt)) {
     echo "Error while executing SQL statement";
-    header("Location: ../index.php?error=login");
+    header("Location: ../index.php?error=sqlexecute");
     exit();
 }
 
@@ -33,13 +33,13 @@ $row = mysqli_fetch_assoc($results);
 
 if(!$row){
     echo "account not found";
-    header("Location: ../index.php?error=login");
+    header("Location: ../index.php?error=accountnotfound");
     exit();	
 }
 
 if (!password_verify($password, $row["password"])) {
     echo "invalid password";
-    header("Location: ../index.php?error=login");
+    header("Location: ../index.php?error=incorrectpassword");
     exit();	
 }
 

@@ -54,23 +54,24 @@
                 <h1>Edit Profile</h1>
             </div>
             <div class="edit-profile-form-container">
-                <form action="../includes/edit-profile.inc.php" method="post">
+                <form action="../includes/edit-profile.inc.php" method="post" enctype="multipart/form-data">
+                    <input type="number" style="display: none;" value="<?php echo $_SESSION["user_id"] ?>" name="user-id">
                     <div class="edit-profile-info">
                         <div class="edit-profile-main-info">
                             <h3>Name</h3>
                             <div class="edit-profile-form-duo">
-                                <input type="text" name="first-name" placeholder="First Name" value="<?php echo $firstName ?>" required>
-                                <input type="text" name="last-name" placeholder="Last Name" value="<?php echo $lastName ?>" required>
+                                <input type="text" name="first-name" placeholder="Edit First Name" value="<?php echo $firstName ?>" required>
+                                <input type="text" name="last-name" placeholder="Edit Last Name" value="<?php echo $lastName ?>" required>
                             </div>
                             <h3>Contact Info</h3>
                             <div class="edit-profile-form-duo">
-                                <input type="email" name="email" placeholder="Email" value="<?php echo $email ?>" required>
-                                <input type="text" name="phone-number" placeholder="Phone Number" value="<?php echo $phoneNumber ?>" required>
+                                <input type="email" name="email" placeholder="New Email" value="<?php echo $email ?>" required>
+                                <input type="text" name="phone-number" placeholder="New Phone Number" value="<?php echo $phoneNumber ?>" required>
                             </div>
                             <h3>Username and Password</h3>                    
-                            <input type="text" name="username" placeholder="Username" value="<?php echo $username ?>" required>
+                            <input type="text" name="new-username" placeholder="New Username" value="<?php echo $username ?>" required>
                             <div class="edit-profile-form-duo">
-                                <input type="password" name="password" placeholder="Password" required>
+                                <input type="password" name="new-password" placeholder="New Password">
                             </div>
                         </div>
                         <div class="edit-profile-pfp">

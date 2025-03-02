@@ -7,6 +7,12 @@
     <title>Cebu Best Value Trading</title>
 </head>
 <body>
+    <?php 
+    if (isset($_SESSION["user_type"])) {
+        $userType = $_SESSION["user_type"];
+        header("Location: ".$userType."/".$userType.".php");
+    }
+    ?>
     <div class="index-main-container">
         <div class="index-login-container">
             <div class="index-login">
@@ -18,6 +24,9 @@
                     <br>
                     <button type="submit" name="login">Login</button>
                 </form>
+                <?php 
+                // do errors here
+                ?>
             </div>
         </div>
         <div class="index-image-container">

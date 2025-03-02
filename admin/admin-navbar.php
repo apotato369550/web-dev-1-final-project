@@ -1,5 +1,21 @@
 <?php
-    include "../includes/get-pfp.inc.php";
+
+    include "../includes/dbh.inc.php";
+    $userId = $_SESSION["user_id"];
+    $profilePicPath = "../assets/default_pfp.png";
+
+    $stmt = mysqli_stmt_init($connection);
+    $sql = "SELECT * FROM users WHERE user_id=?";
+
+    mysqli_stmt_prepare($stmt, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $userId);
+    mysqli_stmt_execute($stmt);
+    $results = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($results);
+
+    if (!empty($row["profile_picture"])) {
+        $profilePicPath = "../uploads/profile-pictures/".$row["profile_picture"];
+    }
 ?>
 
 <nav>

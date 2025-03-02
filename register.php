@@ -12,6 +12,11 @@
             <div class="register-title-container">
                 <h1>Cebu Best <br> Value Trading!</h1>
                 <p>Note: Registration is to be reviewed and must <br>be approved by admin.</p>
+                <?php 
+                
+                // do errors here
+
+                ?>
             </div>
             <div class="register-form-container">
                 <h2>Register</h2>
