@@ -98,3 +98,91 @@ nav {
     font-weight: 1000;
     margin: 0px 0px 15px 0px;
 }
+
+.edit-profile-container {
+    display: flex;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+}
+
+.edit-profile-content-container {
+    margin: 7vh auto;
+}
+
+.edit-profile-form-container {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    background-color: white;
+    width: 30vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.edit-profile-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.edit-profile-info input {
+  padding: 5px;
+  margin: 5px;
+  width: 90%;
+  font-size: .75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.edit-profile-main-info {
+    margin: 0px 12px;
+}
+
+.edit-profile-pfp {
+    margin: 0px 12px;
+    text-align: center;
+}
+
+.edit-profile-pfp img {
+    width: 275px;
+    height: 275px;
+    border-radius: 50%;
+}
+
+.edit-profile-confirm-submit {
+    margin: 12px;
+}
+
+.edit-profile-confirm-submit input {
+    padding: 5px;
+    margin: 5px;
+    font-size: .75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.edit-profile-confirm-submit button {
+    padding: 5px;
+    margin: 5px;
+    font-size: .75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.error-message {
+  color: red;
+}
+
+.success-message {
+  color: green;
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .edit-profile-form-container {
+        width: 75vw;
+        text-align: center;
+    }
+}

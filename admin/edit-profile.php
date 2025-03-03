@@ -76,8 +76,8 @@
                         </div>
                         <div class="edit-profile-pfp">
                             <img src="<?php echo $profilePicPath ?>" alt="Profile Pic">
-                            
-                            <label for="profile-image">Edit Profile Pic</label>
+                            <br>
+                            <h3>Upload Profile Pic</h3>                    
                             <input type="file" name="profile-image">
                         </div>
                     </div>
@@ -87,7 +87,30 @@
                         <button type="submit" name="edit-profile">Save Changes</button>
                     </div>
                 </form>
+                <?php 
+                if (!empty($_GET["error"])) {
+                    $errorMessage = $_GET["error"];
+                    if ($errorMessage === "sqlprepare" || $errorMessage === "sqlexecute") {
+                        echo "<p class='error-message'>Error occured executing SQL query</p>";
+                    }
+                    if ($errorMessage === "accountnotfound") {
+                        echo "<p class='error-message'>Could not find your account.</p>";
+                    }
+                    if ($errorMessage === "incorrectpassword") {
+                        echo "<p class='error-message'>Password incorrect.</p>";
+                    }
+                    if ($errorMessage === "uploaderror" || $errorMessage === "movefailed") {
+                        echo "<p class='error-message'>There was an error uploading your image.</p>";
+                    }
+                    if ($errorMessage === "imagetoobig") {
+                        echo "<p class='error-message'>File size too large. Please select a smaller image</p>";
+                    }
+                }
 
+                if (!empty($_GET["edit"]) && $_GET["edit"] === "success") {
+                    echo "<p class='success-message'>Profile edited successfully!</p>";
+                }
+                ?>
             </div>
         </div>
     </div>
