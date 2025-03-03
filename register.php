@@ -13,9 +13,24 @@
                 <h1>Cebu Best <br> Value Trading!</h1>
                 <p>Note: Registration is to be reviewed and must <br>be approved by admin.</p>
                 <?php 
-                
-                // do errors here
-
+                if (!empty($_GET["error"])) {
+                    $errorMessage = $_GET["error"];
+                    if ($errorMessage === "specialcharacters") {
+                        echo "<p class='error-message'>Your username must not contain special characters.</p>";
+                    }
+                    if ($errorMessage === "passwordsdonotmatch") {
+                        echo "<p class='error-message'>Your passwords do not match.</p>";
+                    }
+                    if ($errorMessage === "sqlprepare" || $errorMessage === "sqlexecute") {
+                        echo "<p class='error-message'>Error occured executing SQL query</p>";
+                    }
+                    if ($errorMessage === "usernameinuse") {
+                        echo "<p class='error-message'>That username is in use. Please select another username</p>";
+                    }
+                }
+                if (!empty($_GET["registration"]) && $_GET["registration"] === "successful") {
+                    echo "<p class='success-message'>Registration successful! Please wait for approval by admin.</p>";
+                }
                 ?>
             </div>
             <div class="register-form-container">

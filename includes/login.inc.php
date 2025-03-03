@@ -33,13 +33,13 @@ $row = mysqli_fetch_assoc($results);
 
 if(!$row){
     echo "account not found";
-    header("Location: ../index.php?error=accountnotfound");
+    header("Location: ../index.php?error=login");
     exit();	
 }
 
 if (!password_verify($password, $row["password"])) {
     echo "invalid password";
-    header("Location: ../index.php?error=incorrectpassword");
+    header("Location: ../index.php?error=login");
     exit();	
 }
 

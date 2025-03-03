@@ -61,6 +61,7 @@ body {
   border: 1px solid black;
 }
 
+
 .index-button-container {
   margin: 23vh auto;
   background-color: white;
@@ -237,6 +238,14 @@ body {
 
 .check-status-rejected {
   color: red;
+}
+
+.error-message {
+  color: red;
+}
+
+.success-message {
+  color: green;
 }
 
 @media only screen and (max-width: 1200px) {

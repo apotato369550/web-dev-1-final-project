@@ -25,7 +25,15 @@
                     <button type="submit" name="login">Login</button>
                 </form>
                 <?php 
-                // do errors here
+                if (!empty($_GET["error"])) {
+                    $errorMessage = $_GET["error"];
+                    if ($errorMessage === "sqlprepare" || $errorMessage === "sqlexecute") {
+                        echo "<p class='error-message'>Error occured executing SQL query</p>";
+                    }
+                    if ($errorMessage === "login") {
+                        echo "<p class='error-message'>Sorry, your username or password is invalid.</p>";                        
+                    }
+                }
                 ?>
             </div>
         </div>
