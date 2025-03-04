@@ -34,6 +34,9 @@
                         echo "<p class='error-message'>Sorry, your username or password is invalid.</p>";                        
                     }
                 }
+                if (!empty($_GET["registration"]) && $_GET["registration"] === "successful") {
+                    echo "<p class='success-message'>Registration successful!</p>";
+                }
                 ?>
             </div>
         </div>
