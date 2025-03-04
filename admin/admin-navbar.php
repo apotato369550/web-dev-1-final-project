@@ -47,7 +47,7 @@
                         <a href="edit-profile.php">Edit Profile</a>
                     </li>
                     <li>
-                        <a href="#">Manage Account</a>
+                        <a href="manage-accounts.php">Manage Accounts</a>
                     </li>
                     <li>
                         <a href="#">Manage Jobs</a>
