@@ -67,20 +67,21 @@
                         </div>
                         <div class="account-info">
                             <h1>User #<?php echo $userId ?>: <?php echo $username ?></h1>
-                            <h1>Account Type: <?php echo $userType ?> </h1>
+                            <h3>Account Type: <?php echo $userType ?> </h3>
                             <p>Full Name: <?php echo $lastName.", ".$firstName ?></p>
                             <p>Email: <?php echo $email ?> </p>
                             <p>Phone Number: <?php echo $phoneNumber ?> </p>
                         </div>
                         <div class="account-options">
                             <form action="../includes/update-account-status.inc.php" method="post">
-                                <input type="number" value="<?php echo $userId; ?>" style="display: none;">
+                                <input type="number" value="<?php echo $sessionUserId; ?>" style="display: none;" name="admin-id">
+                                <input type="number" value="<?php echo $userId; ?>" style="display: none;" name="user-id">
                                 
-                                <p>Status: </p>
+                                <h3>Status: </h3>
                                 <select name="account-status">
-                                    <option value="active" <?php if ($applicationStatus === "accepted") { echo "selected"; } ?>>Active</option>
-                                    <option value="disabled" <?php if ($applicationStatus === "rejected") { echo "selected"; } ?>>Disabled</option>
-                                    <option value="inactive" <?php if ($applicationStatus === "pending") { echo "selected"; } ?>>Inactive</option>
+                                    <option value="approved" <?php if ($applicationStatus === "accepted") { echo "selected"; } ?>>Active</option>
+                                    <option value="rejected" <?php if ($applicationStatus === "rejected") { echo "selected"; } ?>>Disabled</option>
+                                    <option value="pending" <?php if ($applicationStatus === "pending") { echo "selected"; } ?>>Inactive</option>
                                 </select>
                                 <button type="submit" name="update-account-status">Update</button>
                             </form>

@@ -115,7 +115,6 @@ nav {
     display: flex;
     flex-direction: row;
     margin: auto;
-    background-color: white;
     width: 30vw;
     padding: 3vh 3vw;
     border-radius: 12px;
@@ -167,6 +166,77 @@ nav {
     padding: 5px;
     margin: 5px;
     font-size: .75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.manage-accounts-container {
+    display: flex;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+}
+
+.manage-accounts {
+    margin: 7vh auto;
+}
+
+.manage-accounts-interface {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.account {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: #999999 3px solid;
+    margin: 12px;
+}
+
+.account:last-child {
+    border-bottom: none;
+}
+
+.account-profile-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.account-info {
+    line-height: 0.5;
+    width: 50%;
+    margin: 0px 12px;
+}
+
+.account-options select {
+    padding: 12px;
+    margin: 12px;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.account-options option {
+    padding: 12px;
+    margin: 12px;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.account-options button {
+    padding: 12px;
+    margin: 12px;
+    font-size: 1.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
