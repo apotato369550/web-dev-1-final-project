@@ -56,7 +56,7 @@
                         <a href="#">Manage Client Requests</a>
                     </li>
                     <li>
-                        <a href="#">Manage Announcements</a>
+                        <a href="manage-announcements.php">Manage Announcements</a>
                     </li>
                     <li>
                         <a href="../includes/logout.inc.php">Logout</a>
