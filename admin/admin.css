@@ -241,6 +241,122 @@ nav {
     border-radius: 4px;
 }
 
+.manage-accounts-container {
+    display: flex;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+}
+
+.manage-announcements {
+    margin: 7vh auto;
+}
+
+.manage-announcements-title {
+    width: 65vw;
+    margin: auto;
+    margin-left: 14.5vw;
+}
+
+.manage-announcements-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.manage-announcements-form div {
+    margin: auto;
+}
+
+.manage-announcements-form input {
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.5rem;
+    width: 62vw;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.manage-announcements-form textarea {
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.5rem;
+    width: 62vw;
+    height: 25vh;
+    border: 1px solid #ccc;
+    resize: none;
+    border-radius: 4px;
+}
+
+.manage-announcements-form button {
+    padding: 5px;
+    margin: 5px auto;
+    width: 100%;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.manage-announcements-list {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.announcement {
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+    border-bottom: #999999 3px solid;
+    margin: 12px;
+}
+
+.announcement:last-child {
+    border-bottom: none;
+}
+
+.announcement-profile-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.announcement-details {
+    line-height: 1;
+    width: 50%;
+    margin: 0px 12px;
+}
+
+.announcement-single-interface {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.announcement-interface-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.announcement-interface-buttons button {
+    padding: 12px;
+    margin: 12px;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 .error-message {
   color: red;
 }

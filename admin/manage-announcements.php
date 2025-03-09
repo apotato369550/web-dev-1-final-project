@@ -69,15 +69,27 @@
                         $currentDescription = $row["description"];
                         ?>
                         <input type="number" value="<?php echo $_GET["announcement-id"]; ?>" name="announcement-id" style="display: none;">
-                        <input type="text" placeholder="Title" name="announcement-title" value="<?php echo $currentTitle ?>">
-                        <textarea name="announcement-description"><?php echo $currentDescription ?></textarea>
-                        <button type="submit" name="edit-announcement">Edit Announcement</button>
+                        <div class="announcement-title-input">
+                            <input type="text" placeholder="Title" name="announcement-title" value="<?php echo $currentTitle ?>">
+                        </div>
+                        <div class="announcement-description-input">
+                            <textarea name="announcement-description"><?php echo $currentDescription ?></textarea>
+                        </div>
+                        <div class="announcement-submit-button">
+                            <button type="submit" name="edit-announcement">Edit Announcement</button>
+                        </div>
                         <?php
                     } else {
-                        ?>
-                        <input type="text" placeholder="Title" name="announcement-title">
-                        <textarea name="announcement-description">Add announcement text here...</textarea>
-                        <button type="submit" name="create-announcement">Create Announcement</button>
+                        ?>   
+                        <div class="announcement-title-input">
+                            <input type="text" placeholder="Title" name="announcement-title">
+                        </div>
+                        <div class="announcement-description-input">
+                            <textarea name="announcement-description">Enter announcement here...</textarea>
+                        </div>
+                        <div class="announcement-submit-button">
+                            <button type="submit" name="edit-announcement">Create Announcement</button>
+                        </div>
                         <?php
                     }
                     ?>
@@ -139,22 +151,27 @@
                             <img src="<?php echo $authorProfilePicture ?>" alt="">
                         </div>
                         <div class="announcement-details">
-                            <h2><?php echo $title ?></h2>
+                            <h1><?php echo $title ?></h1>
                             <p>Posted by: <?php echo $authorFirstName." ".$authorLastName." (".$authorUsername.")" ?></p>
                             <p>Date Posted: <?php echo $date ?></p>
                             <p><?php echo $description ?></p>
                         </div>
-                        <div class="announcement-buttons">
-                            <form action="manage-announcements.php" method="get">
-                                <input type="number" value="<?php echo $announcementId ?>" name="announcement-id" style="display: none;">
-                                <input type="text" value="true" name="edit" style="display: none;">
-                                <button type="submit">Edit</button>
-                            </form>
-                            <form action="../includes/delete-announcement.inc.php" method="post">
-                                <input type="number" value="<?php echo $_SESSION["user_id"] ?>" name="author-id" style="display: none;">
-                                <input type="number" value="<?php echo $announcementId ?>" name="announcement-id" style="display: none;">
-                                <button type="submit" name="delete-announcement">Delete</button>
-                            </form>
+                        <div class="announcement-single-interface">
+                            <div class="announcement-interface-title">
+                                <h3>Manage Announcement</h3>
+                            </div>
+                            <div class="announcement-interface-buttons">
+                                <form action="manage-announcements.php" method="get"> 
+                                    <input type="number" value="<?php echo $announcementId ?>" name="announcement-id" style="display: none;">
+                                    <input type="text" value="true" name="edit" style="display: none;">
+                                    <button type="submit">Edit</button>
+                                </form>
+                                <form action="../includes/delete-announcement.inc.php" method="post">
+                                    <input type="number" value="<?php echo $_SESSION["user_id"] ?>" name="author-id" style="display: none;">
+                                    <input type="number" value="<?php echo $announcementId ?>" name="announcement-id" style="display: none;">
+                                    <button type="submit" name="delete-announcement">Delete</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <?php
