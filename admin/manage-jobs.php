@@ -56,12 +56,82 @@
                         }
 
                         mysqli_stmt_bind_param($stmt, "i", $jobId);
+                        if(!mysqli_stmt_execute($stmt) ) {
+                            echo "Error while executing SQL statement";
+
+                        }
+                        $results = mysqli_stmt_get_result($stmt);
+                        $row = mysqli_fetch_assoc($results);
+                        $jobTitle = $row["job_title"];
+                        $jobDescription = $row["job_description"];
+                        $jobStatus = $row["job_status"];
+                        $workersAssigned = $row["workers_assigned"];
+                        ?> 
+                        <input type="text" name="job-title" placeholder="Job Title" value="<?php echo $jobTitle ?>" required>
+                        <textarea name="job-description" placeholder="Job Description" required><?php echo $jobDescription ?></textarea>
+                        <select name="job-status">
+                            <option value="in-progress" <?php if ($jobStatus === "in progress") { echo "selected"; } ?>>In Progress</option>
+                            <option value="finished" <?php if ($jobStatus === "finished") { echo "selected"; } ?>>Finished</option>
+                            <option value="cancelled" <?php if ($jobStatus === "cancelled") { echo "selected"; } ?>>Cancelled</option>
+                        </select>
+                        <input type="submit" name="edit-job" value="Submit">
+                        <?php
+                    } else {
+                        ?> 
+                        <input type="text" name="job-title" placeholder="Job Title" required>
+                        <textarea name="job-description" placeholder="Job Description" required></textarea>
+                        <select name="job-status">
+                            <option value="in-progress" selected></option>
+                            <option value="finished"></option>
+                            <option value="cancelled"></option>
+                        </select>
+                        <input type="submit" name="create-job" value="Submit">
+                        <?php
                     }
                     ?>
-                    <input type="text" name="job-title" placeholder="Job Title" required>
-                    <textarea name="job-description" placeholder="Job Description" required></textarea>
-                    <input type="submit" name="submit" value="Submit">
                 </form>
+            </div>
+            <div class="manage-jobs-title">
+                <h1>Jobs</h1>
+            </div>
+            <div class="manage-jobs-list">
+                <?php
+                include "../includes/dbh.inc.php";
+                $sql = "SELECT * FROM jobs ORDER BY date_started DESC";
+                $stmt = mysqli_stmt_init($connection);
+
+                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    echo "Error when preparing SQL statement.";
+                }
+
+                if (!mysqli_stmt_execute($stmt)) {
+                    echo "Error while executing SQL statement";
+                }
+
+                $results = mysqli_stmt_get_result($stmt);
+                while ($row = mysqli_fetch_assoc($results)) {
+                    $currentJobTitle = $row["job_title"];
+                    $currentJobDescription = $row["job_description"];
+                    $currentJobStatus = $row["job_status"];
+                    $currentWorkersAssigned = $row["workers_assigned"];
+                    $currentDateStarted = $row["date_started"];
+                    $currentDateEnded = $row["date_ended"];
+                    ?>
+                    <div class="job">
+                        <h1><?php echo $currentJobTitle ?></h1>
+                        <p><?php echo $currentJobDescription ?></p>
+                        <p><?php echo $currentJobStatus ?></p>
+                        <h2>Workers Assigned: </h2>
+                        <?php 
+                        foreach ($currentWorkersAssigned as $worker) {
+                            echo "<p>Worker ID: ".$worker."</p>";
+                        }
+                        ?>
+                        <p><?php echo $currentDateStarted ?></p>
+                    </div>
+                    <?php
+                }
+                ?>
             </div>
         </div>
 </body>
