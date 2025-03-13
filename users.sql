@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2025 at 02:29 PM
+-- Generation Time: Mar 13, 2025 at 02:53 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -46,9 +46,12 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `user_type`, `profile_picture`, `first_name`, `last_name`, `email`, `phone_number`, `application_status`) VALUES
 (12, 'apotato369', '$2y$10$LBO8bWtTqMrAikit3lZUZ.vWevDmpSIa5F2Lg7a8x6yFV84H0uke2', 'admin', NULL, 'John Andre', 'Yap', 'apotato369@gmail.com', '09150443019', 'approved'),
-(13, 'JuanDelaCruz', '$2y$10$S7z1KxUFiUrixWbB.vvL4OQsXBjUe9mYNovBnOrgegVoGZzNWrKi2', 'admin', NULL, 'Juan', 'Dela Cruz', 'juan.delacruz@email.com', '09123456789', 'pending'),
-(14, 'MariaClara', '$2y$10$qcJPhjbXxfZuexXgmjfVw.0v4FQO2vKts1U116B5Cuqzhggs5O7vK', 'worker', NULL, 'Maria', 'Clara', 'maria.clara@gmail.com', '09176543210', 'pending'),
-(15, 'PedroPenduko', '$2y$10$9aKopP/6xKlu7zQL2yJ4O.VqntOSkAzY8BeVaBu7viAW.wTg52hby', 'client', NULL, 'Pedro', 'Penduko', 'pedro.penduko@gmail.com', '092711112233', 'pending');
+(13, 'JuanDelaCruz', '$2y$10$S7z1KxUFiUrixWbB.vvL4OQsXBjUe9mYNovBnOrgegVoGZzNWrKi2', 'admin', NULL, 'Juan', 'Dela Cruz', 'juan.delacruz@email.com', '09123456789', 'approved'),
+(14, 'MariaClara', '$2y$10$qcJPhjbXxfZuexXgmjfVw.0v4FQO2vKts1U116B5Cuqzhggs5O7vK', 'worker', NULL, 'Maria', 'Clara', 'maria.clara@gmail.com', '09176543210', 'approved'),
+(15, 'PedroPenduko', '$2y$10$9aKopP/6xKlu7zQL2yJ4O.VqntOSkAzY8BeVaBu7viAW.wTg52hby', 'client', NULL, 'Pedro', 'Penduko', 'pedro.penduko@gmail.com', '092711112233', 'pending'),
+(16, 'UlingRoasters', '$2y$10$qcJPhjbXxfZuexXgmjfVw.0v4FQO2vKts1U116B5Cuqzhggs5O7vK', 'worker', NULL, 'Uling', 'Roasters', 'uling.roasters@gmail.com', '09176543210', 'approved'),
+(17, 'CrispinBasilio', '$2y$10$qcJPhjbXxfZuexXgmjfVw.0v4FQO2vKts1U116B5Cuqzhggs5O7vK', 'worker', NULL, 'Crispin', 'Basilio', 'crispin.basilio@gmail.com', '09176543210', 'approved'),
+(18, 'CrisostomoIbarra', '$2y$10$qcJPhjbXxfZuexXgmjfVw.0v4FQO2vKts1U116B5Cuqzhggs5O7vK', 'worker', NULL, 'Crisostomo', 'Ibarra', 'crisostomo.ibarra@gmail.com', '09176543210', 'approved');
 
 --
 -- Indexes for dumped tables
@@ -68,7 +71,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
