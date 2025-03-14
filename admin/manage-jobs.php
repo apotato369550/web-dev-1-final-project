@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin.css">
     <title>Manage Jobs - Cebu Best Value Trading</title>
 </head>
 <body>
@@ -65,7 +66,6 @@
                         $jobTitle = $row["job_title"];
                         $jobDescription = $row["job_description"];
                         $jobStatus = $row["job_status"];
-                        $workersAssigned = $row["workers_assigned"];
                         ?> 
                         <input type="text" name="job-title" placeholder="Job Title" value="<?php echo $jobTitle ?>" required>
                         <textarea name="job-description" placeholder="Job Description" required><?php echo $jobDescription ?></textarea>
@@ -74,6 +74,65 @@
                             <option value="finished" <?php if ($jobStatus === "finished") { echo "selected"; } ?>>Finished</option>
                             <option value="cancelled" <?php if ($jobStatus === "cancelled") { echo "selected"; } ?>>Cancelled</option>
                         </select>
+                        <h2>Select Workers: </h2>
+                        <div>
+                            <?php
+                            $sql = "SELECT * FROM users WHERE user_type='worker'";
+                            $stmt = mysqli_stmt_init($connection);
+
+                            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                                echo "Error when preparing SQL statement.";
+                            }
+
+                            if (!mysqli_stmt_execute($stmt)) {
+                                echo "Error while executing SQL statement";
+                            }
+
+                            $results = mysqli_stmt_get_result($stmt);
+                            while ($row = mysqli_fetch_assoc($results)) {
+                                $currentWorkerId = $row["user_id"];
+
+                                $sql = "SELECT * FROM job_assignments WHERE job_id=? AND worker_id=?";
+
+                                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                                    echo "Error when preparing SQL statement.";
+
+                                }
+
+                                mysqli_stmt_bind_param($stmt, "ii", $jobId, $currentWorkerId);
+
+                                if (!mysqli_stmt_execute($stmt)) {
+                                    echo "Error while executing SQL statement";
+                                }
+
+                                $matchingJobResults = mysqli_stmt_get_result($stmt);
+                                $matchingResultsRow = mysqli_fetch_assoc($matchingJobResults);
+
+
+                                $sql = "SELECT * FROM users WHERE user_id=?";
+                                
+                                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                                    echo "Error when preparing SQL statement.";
+                                }
+
+                                mysqli_stmt_bind_param($stmt, "i", $currentWorkerId);
+
+                                if (!mysqli_stmt_execute($stmt)) {
+                                    echo "Error while executing SQL statement";
+                                }
+
+                                $foundWorker = mysqli_stmt_get_result($stmt);
+                                $foundWorkerRow = mysqli_fetch_assoc($foundWorker);
+
+                                $workerUsername = $foundWorkerRow["username"];
+
+                                ?>
+                                <input type="checkbox" name="workers[]" value="<?php echo $currentWorkerId ?>" <?php if ($matchingResultsRow) { echo "checked"; } ?>>
+                                <label for="<?php echo $currentWorkerId ?>"><?php echo $workerUsername ?></label>
+                                <?php
+                            }
+                            ?>
+                        </div>
                         <input type="submit" name="edit-job" value="Submit">
                         <?php
                     } else {
@@ -85,6 +144,49 @@
                             <option value="finished"></option>
                             <option value="cancelled"></option>
                         </select>
+                        <h2>Select Workers: </h2>
+                        <div>
+                            <?php
+                            $sql = "SELECT * FROM users WHERE user_type='worker'";
+                            $stmt = mysqli_stmt_init($connection);
+
+                            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                                echo "Error when preparing SQL statement.";
+                            }
+
+                            if (!mysqli_stmt_execute($stmt)) {
+                                echo "Error while executing SQL statement";
+                            }
+
+                            $results = mysqli_stmt_get_result($stmt);
+                            while ($row = mysqli_fetch_assoc($results)) {
+                                $currentWorkerId = $row["user_id"];
+
+                                $sql = "SELECT * FROM users WHERE user_id=?";
+                                
+                                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                                    echo "Error when preparing SQL statement.";
+                                }
+
+                                mysqli_stmt_bind_param($stmt, "i", $currentWorkerId);
+
+                                if (!mysqli_stmt_execute($stmt)) {
+                                    echo "Error while executing SQL statement";
+                                }
+
+                                $foundWorker = mysqli_stmt_get_result($stmt);
+                                $foundWorkerRow = mysqli_fetch_assoc($foundWorker);
+
+                                $workerUsername = $foundWorkerRow["username"];
+                                
+
+                                ?>
+                                <input type="checkbox" name="workers[]" value="<?php echo $currentWorkerId ?>">
+                                <label for="<?php echo $currentWorkerId ?>"><?php echo $workerUsername ?></label>
+                                <?php
+                            }
+                            ?>
+                        </div>
                         <input type="submit" name="create-job" value="Submit">
                         <?php
                     }
@@ -97,37 +199,70 @@
             <div class="manage-jobs-list">
                 <?php
                 include "../includes/dbh.inc.php";
-                $sql = "SELECT * FROM jobs ORDER BY date_started DESC";
-                $stmt = mysqli_stmt_init($connection);
 
-                if (!mysqli_stmt_prepare($stmt, $sql)) {
-                    echo "Error when preparing SQL statement.";
+                function fetchJobs($connection) {
+                    $sql = "SELECT * FROM jobs ORDER BY date_started DESC";
+                    $stmt = mysqli_stmt_init($connection);
+
+                    if (!mysqli_stmt_prepare($stmt, $sql)) {
+                        echo "Error when preparing SQL statement.";
+                        return [];
+                    }
+
+                    if (!mysqli_stmt_execute($stmt)) {
+                        echo "Error while executing SQL statement";
+                        return [];
+                    }
+
+                    return mysqli_stmt_get_result($stmt);
                 }
 
-                if (!mysqli_stmt_execute($stmt)) {
-                    echo "Error while executing SQL statement";
+                function fetchWorkersForJob($connection, $jobId) {
+                    $sql = "SELECT users.username FROM job_assignments 
+                            JOIN users ON job_assignments.worker_id = users.user_id 
+                            WHERE job_assignments.job_id=?";
+                    $stmt = mysqli_stmt_init($connection);
+
+                    if (!mysqli_stmt_prepare($stmt, $sql)) {
+                        echo "Error when preparing SQL statement.";
+                        return [];
+                    }
+
+                    mysqli_stmt_bind_param($stmt, "i", $jobId);
+
+                    if (!mysqli_stmt_execute($stmt)) {
+                        echo "Error while executing SQL statement";
+                        return [];
+                    }
+
+                    return mysqli_stmt_get_result($stmt);
                 }
 
-                $results = mysqli_stmt_get_result($stmt);
-                while ($row = mysqli_fetch_assoc($results)) {
+                $jobs = fetchJobs($connection);
+
+                while ($row = mysqli_fetch_assoc($jobs)) {
+                    $currentJobId = $row["job_id"];
                     $currentJobTitle = $row["job_title"];
                     $currentJobDescription = $row["job_description"];
                     $currentJobStatus = $row["job_status"];
-                    $currentWorkersAssigned = $row["workers_assigned"];
                     $currentDateStarted = $row["date_started"];
-                    $currentDateEnded = $row["date_ended"];
+                    $currentDateFinished = $row["date_finished"];
                     ?>
                     <div class="job">
                         <h1><?php echo $currentJobTitle ?></h1>
                         <p><?php echo $currentJobDescription ?></p>
                         <p><?php echo $currentJobStatus ?></p>
+                        <p><?php echo $currentDateStarted ?></p>
                         <h2>Workers Assigned: </h2>
                         <?php 
-                        foreach ($currentWorkersAssigned as $worker) {
-                            echo "<p>Worker ID: ".$worker."</p>";
+                        $workers = fetchWorkersForJob($connection, $currentJobId);
+
+                        while ($worker = mysqli_fetch_assoc($workers)) {
+                            ?>
+                            <p><?php echo $worker["username"] ?></p>
+                            <?php
                         }
                         ?>
-                        <p><?php echo $currentDateStarted ?></p>
                     </div>
                     <?php
                 }
