@@ -50,7 +50,7 @@
                         <a href="manage-accounts.php">Manage Accounts</a>
                     </li>
                     <li>
-                        <a href="#">Manage Jobs</a>
+                        <a href="manage-jobs.php">Manage Jobs</a>
                     </li>
                     <li>
                         <a href="#">Manage Client Requests</a>
