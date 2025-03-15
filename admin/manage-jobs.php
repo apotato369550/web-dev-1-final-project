@@ -65,9 +65,11 @@
                         $row = mysqli_fetch_assoc($results);
                         $jobTitle = $row["job_title"];
                         $jobDescription = $row["job_description"];
+                        $jobLocation = $row["job_location"];
                         $jobStatus = $row["job_status"];
                         ?> 
                         <input type="text" name="job-title" placeholder="Job Title" value="<?php echo $jobTitle ?>" required>
+                        <input type="text" name="job-location" placeholder="Job Location" value="<?php echo $jobLocation ?>" required>
                         <textarea name="job-description" placeholder="Job Description" required><?php echo $jobDescription ?></textarea>
                         <select name="job-status">
                             <option value="in-progress" <?php if ($jobStatus === "in progress") { echo "selected"; } ?>>In Progress</option>
@@ -138,6 +140,7 @@
                     } else {
                         ?> 
                         <input type="text" name="job-title" placeholder="Job Title" required>
+                        <input type="text" name="job-location" placeholder="Job Location Title" required>
                         <textarea name="job-description" placeholder="Job Description" required></textarea>
                         <select name="job-status">
                             <option value="in-progress" selected></option>
@@ -244,12 +247,14 @@
                     $currentJobId = $row["job_id"];
                     $currentJobTitle = $row["job_title"];
                     $currentJobDescription = $row["job_description"];
+                    $currentJobLocation = $row["job_location"];
                     $currentJobStatus = $row["job_status"];
                     $currentDateStarted = $row["date_started"];
                     $currentDateFinished = $row["date_finished"];
                     ?>
                     <div class="job">
                         <h1><?php echo $currentJobTitle ?></h1>
+                        <p><?php echo $currentJobLocation ?></p>
                         <p><?php echo $currentJobDescription ?></p>
                         <p><?php echo $currentJobStatus ?></p>
                         <p><?php echo $currentDateStarted ?></p>
