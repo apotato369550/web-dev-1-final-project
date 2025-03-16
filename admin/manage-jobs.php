@@ -68,11 +68,12 @@
                         $jobLocation = $row["job_location"];
                         $jobStatus = $row["job_status"];
                         ?> 
+                        <input type="number" value="<?php echo $jobId ?>" name="job-id" style="display: none;">
                         <input type="text" name="job-title" placeholder="Job Title" value="<?php echo $jobTitle ?>" required>
                         <input type="text" name="job-location" placeholder="Job Location" value="<?php echo $jobLocation ?>" required>
                         <textarea name="job-description" placeholder="Job Description" required><?php echo $jobDescription ?></textarea>
                         <select name="job-status">
-                            <option value="in-progress" <?php if ($jobStatus === "in progress") { echo "selected"; } ?>>In Progress</option>
+                            <option value="in progress" <?php if ($jobStatus === "in progress") { echo "selected"; } ?>>In Progress</option>
                             <option value="finished" <?php if ($jobStatus === "finished") { echo "selected"; } ?>>Finished</option>
                             <option value="cancelled" <?php if ($jobStatus === "cancelled") { echo "selected"; } ?>>Cancelled</option>
                         </select>
@@ -140,12 +141,12 @@
                     } else {
                         ?> 
                         <input type="text" name="job-title" placeholder="Job Title" required>
-                        <input type="text" name="job-location" placeholder="Job Location Title" required>
+                        <input type="text" name="job-location" placeholder="Job Location" required>
                         <textarea name="job-description" placeholder="Job Description" required></textarea>
                         <select name="job-status">
-                            <option value="in-progress" selected></option>
-                            <option value="finished"></option>
-                            <option value="cancelled"></option>
+                            <option value="in progress" selected>In Progress</option>
+                            <option value="finished">Finished</option>
+                            <option value="cancelled">Cancelled</option>
                         </select>
                         <h2>Select Workers: </h2>
                         <div>
@@ -268,6 +269,16 @@
                             <?php
                         }
                         ?>
+                        <form action="manage-jobs.php" method="get">
+                            <input type="text" name="edit" value="true" style="display: none;">
+                            <input type="number" name="job-id" value="<?php echo $currentJobId ?>" style="display: none;">
+                            <button type="submit">Edit Job</button>
+                        </form>
+                        <form action="../includes/delete-job.inc.php" method="post">
+                            <input type="number" name="author-id" value="<?php echo $_SESSION["user_id"] ?>" style="display: none;">
+                            <input type="number" name="job-id" value="<?php echo $currentJobId ?>" style="display: none;">
+                            <button type="submit" name="delete-job">Delete Job</button>
+                        </form>
                     </div>
                     <?php
                 }
