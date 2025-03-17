@@ -149,7 +149,7 @@
                             <option value="cancelled">Cancelled</option>
                         </select>
                         <h2>Select Workers: </h2>
-                        <div>
+                        <div class="manage-jobs-workers-select">
                             <?php
                             $sql = "SELECT * FROM users WHERE user_type='worker'";
                             $stmt = mysqli_stmt_init($connection);
@@ -185,8 +185,10 @@
                                 
 
                                 ?>
-                                <input type="checkbox" name="workers[]" value="<?php echo $currentWorkerId ?>">
-                                <label for="<?php echo $currentWorkerId ?>"><?php echo $workerUsername ?></label>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="workers[]" value="<?php echo $currentWorkerId ?>">
+                                    <label for="<?php echo $currentWorkerId ?>"><?php echo $workerUsername ?></label>
+                                </div>
                                 <?php
                             }
                             ?>
