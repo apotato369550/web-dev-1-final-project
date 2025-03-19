@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2025 at 02:53 PM
+-- Generation Time: Mar 19, 2025 at 05:08 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -48,7 +48,7 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `user_type`, `profile_pi
 (12, 'apotato369', '$2y$10$LBO8bWtTqMrAikit3lZUZ.vWevDmpSIa5F2Lg7a8x6yFV84H0uke2', 'admin', NULL, 'John Andre', 'Yap', 'apotato369@gmail.com', '09150443019', 'approved'),
 (13, 'JuanDelaCruz', '$2y$10$S7z1KxUFiUrixWbB.vvL4OQsXBjUe9mYNovBnOrgegVoGZzNWrKi2', 'admin', NULL, 'Juan', 'Dela Cruz', 'juan.delacruz@email.com', '09123456789', 'approved'),
 (14, 'MariaClara', '$2y$10$qcJPhjbXxfZuexXgmjfVw.0v4FQO2vKts1U116B5Cuqzhggs5O7vK', 'worker', NULL, 'Maria', 'Clara', 'maria.clara@gmail.com', '09176543210', 'approved'),
-(15, 'PedroPenduko', '$2y$10$9aKopP/6xKlu7zQL2yJ4O.VqntOSkAzY8BeVaBu7viAW.wTg52hby', 'client', NULL, 'Pedro', 'Penduko', 'pedro.penduko@gmail.com', '092711112233', 'pending'),
+(15, 'PedroPenduko', '$2y$10$9aKopP/6xKlu7zQL2yJ4O.VqntOSkAzY8BeVaBu7viAW.wTg52hby', 'client', NULL, 'Pedro', 'Penduko', 'pedro.penduko@gmail.com', '092711112233', 'approved'),
 (16, 'UlingRoasters', '$2y$10$qcJPhjbXxfZuexXgmjfVw.0v4FQO2vKts1U116B5Cuqzhggs5O7vK', 'worker', NULL, 'Uling', 'Roasters', 'uling.roasters@gmail.com', '09176543210', 'approved'),
 (17, 'CrispinBasilio', '$2y$10$qcJPhjbXxfZuexXgmjfVw.0v4FQO2vKts1U116B5Cuqzhggs5O7vK', 'worker', NULL, 'Crispin', 'Basilio', 'crispin.basilio@gmail.com', '09176543210', 'approved'),
 (18, 'CrisostomoIbarra', '$2y$10$qcJPhjbXxfZuexXgmjfVw.0v4FQO2vKts1U116B5Cuqzhggs5O7vK', 'worker', NULL, 'Crisostomo', 'Ibarra', 'crisostomo.ibarra@gmail.com', '09176543210', 'approved');
