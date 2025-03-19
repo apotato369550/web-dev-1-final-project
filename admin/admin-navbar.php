@@ -53,7 +53,7 @@
                         <a href="manage-jobs.php">Manage Jobs</a>
                     </li>
                     <li>
-                        <a href="#">Manage Client Requests</a>
+                        <a href="manage-requests.php">Manage Client Requests</a>
                     </li>
                     <li>
                         <a href="manage-announcements.php">Manage Announcements</a>
