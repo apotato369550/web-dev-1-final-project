@@ -99,6 +99,35 @@ nav {
     margin: 0px 0px 15px 0px;
 }
 
+.admin-content-container {
+    display: flex;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+}
+
+.admin-content {
+    margin: 7vh auto;
+}
+
+.admin-content-title {
+    width: 65vw;
+    margin: auto;
+    margin-left: -0.5vw;
+}
+
+.admin-content-announcement {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+
 .edit-profile-container {
     display: flex;
     width: 100vw;
