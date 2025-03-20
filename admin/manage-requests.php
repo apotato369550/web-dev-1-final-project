@@ -98,11 +98,16 @@
                             <p>Phone Number: <?php echo $phoneNumber ?> </p>
                         </div>
                         <div class="request-status-select">
-                            <select name="request-status">
-                                <option value="in progress" <?php if ($requestStatus === "in progress") { echo "selected"; } ?>>In Progress</option>
-                                <option value="finished" <?php if ($requestStatus === "finished") { echo "selected"; } ?>>Finished</option>
-                                <option value="cancelled" <?php if ($requestStatus === "cancelled") { echo "selected"; } ?>>Cancelled</option>
-                            </select>
+                            <form action="../includes/change-request-status.inc.php" method="post">
+                                <input type="hidden" name="author-id" value="<?php echo $_SESSION["user_id"] ?>">
+                                <input type="hidden" name="request-id" value="<?php echo $row["request_id"] ?>">
+                                <select name="request-status">
+                                    <option value="in progress" <?php if ($requestStatus === "in progress") { echo "selected"; } ?>>In Progress</option>
+                                    <option value="finished" <?php if ($requestStatus === "finished") { echo "selected"; } ?>>Finished</option>
+                                    <option value="cancelled" <?php if ($requestStatus === "cancelled") { echo "selected"; } ?>>Cancelled</option>
+                                </select>
+                                <button type="submit" name="edit-request-status">Edit</button>
+                            </form>
                         </div>
                     </div>
 

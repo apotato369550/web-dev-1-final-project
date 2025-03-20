@@ -256,31 +256,38 @@
                     $currentDateFinished = $row["date_finished"];
                     ?>
                     <div class="job">
-                        <h1><?php echo $currentJobTitle ?></h1>
-                        <p><?php echo $currentJobLocation ?></p>
-                        <p><?php echo $currentJobDescription ?></p>
-                        <p><?php echo $currentJobStatus ?></p>
-                        <p><?php echo $currentDateStarted ?></p>
-                        <h2>Workers Assigned: </h2>
-                        <?php 
-                        $workers = fetchWorkersForJob($connection, $currentJobId);
+                        <div class="job-content">
+                            <h1><?php echo $currentJobTitle ?></h1>
+                            <p>Date: <?php echo $currentDateStarted ?></p>
+                            <p>Location: <?php echo $currentJobLocation ?></p>
+                            <p><?php echo $currentJobDescription ?></p>
+                            <p>Status: <?php echo $currentJobStatus ?></p>
+                            
+                        </div>
+                        <div class="job-workers">
+                            <h2>Workers Assigned: </h2>
+                            <?php 
+                            $workers = fetchWorkersForJob($connection, $currentJobId);
 
-                        while ($worker = mysqli_fetch_assoc($workers)) {
+                            while ($worker = mysqli_fetch_assoc($workers)) {
+                                ?>
+                                <p><?php echo $worker["username"] ?></p>
+                                <?php
+                            }
                             ?>
-                            <p><?php echo $worker["username"] ?></p>
-                            <?php
-                        }
-                        ?>
-                        <form action="manage-jobs.php" method="get">
-                            <input type="text" name="edit" value="true" style="display: none;">
-                            <input type="number" name="job-id" value="<?php echo $currentJobId ?>" style="display: none;">
-                            <button type="submit">Edit Job</button>
-                        </form>
-                        <form action="../includes/delete-job.inc.php" method="post">
-                            <input type="number" name="author-id" value="<?php echo $_SESSION["user_id"] ?>" style="display: none;">
-                            <input type="number" name="job-id" value="<?php echo $currentJobId ?>" style="display: none;">
-                            <button type="submit" name="delete-job">Delete Job</button>
-                        </form>
+                        </div>
+                        <div class="job-buttons">
+                            <form action="manage-jobs.php" method="get">
+                                <input type="text" name="edit" value="true" style="display: none;">
+                                <input type="number" name="job-id" value="<?php echo $currentJobId ?>" style="display: none;">
+                                <button type="submit">Edit Job</button>
+                            </form>
+                            <form action="../includes/delete-job.inc.php" method="post">
+                                <input type="number" name="author-id" value="<?php echo $_SESSION["user_id"] ?>" style="display: none;">
+                                <input type="number" name="job-id" value="<?php echo $currentJobId ?>" style="display: none;">
+                                <button type="submit" name="delete-job">Delete Job</button>
+                            </form>
+                        </div>
                     </div>
                     <?php
                 }
