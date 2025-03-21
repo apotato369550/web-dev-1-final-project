@@ -44,6 +44,9 @@
             <div class="nav-dropdown-content">
                 <ul>
                     <li>
+                        <a href="admin.php">Home</a>
+                    </li>
+                    <li>
                         <a href="edit-profile.php">Edit Profile</a>
                     </li>
                     <li>
