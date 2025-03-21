@@ -535,6 +535,10 @@ nav {
     margin: 12px;
 }
 
+.job:last-child {
+    border-bottom: none;
+}
+
 .job-buttons button {
     padding: 12px;
     margin: 12px;
