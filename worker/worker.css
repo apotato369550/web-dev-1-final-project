@@ -99,7 +99,6 @@ nav {
     margin: 0px 0px 15px 0px;
 }
 
-
 .error-message {
     color: red;
 }
@@ -107,3 +106,160 @@ nav {
 .success-message {
     color: green;
 }
+
+
+
+.worker-content-container {
+    display: flex;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+}
+
+.worker-content {
+    margin: 7vh auto;
+}
+
+.worker-content-title {
+    width: 65vw;
+    margin: auto;
+    margin-left: -0.5vw;
+}
+
+.worker-content-announcement {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.worker-content-jobs {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.job {
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+    border-bottom: #999999 3px solid;
+    margin: 12px;
+}
+
+.job:last-child {
+    border-bottom: none;
+}
+
+.job-profile-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.edit-profile-container {
+    display: flex;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+}
+
+.edit-profile-content-container {
+    margin: 7vh auto;
+}
+
+.edit-profile-form-container {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 30vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.edit-profile-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.edit-profile-info input {
+  padding: 5px;
+  margin: 5px;
+  width: 90%;
+  font-size: .75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.edit-profile-main-info {
+    margin: 0px 12px;
+}
+
+.edit-profile-pfp {
+    margin: 0px 12px;
+    text-align: center;
+}
+
+.edit-profile-pfp img {
+    width: 275px;
+    height: 275px;
+    border-radius: 50%;
+}
+
+.edit-profile-confirm-submit {
+    margin: 12px;
+}
+
+.edit-profile-confirm-submit input {
+    padding: 5px;
+    margin: 5px;
+    font-size: .75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.edit-profile-confirm-submit button {
+    padding: 5px;
+    margin: 5px;
+    font-size: .75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+.announcement {
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+    border-bottom: #999999 3px solid;
+    margin: 12px;
+}
+
+.announcement:last-child {
+    border-bottom: none;
+}
+
+.announcement-profile-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.announcement-details {
+    line-height: 1;
+    width: 50%;
+    margin: 0px 12px;
+}
+

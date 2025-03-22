@@ -43,7 +43,15 @@
             </div>
             <div class="nav-dropdown-content">
                 <ul>
-                    
+                    <li>
+                        <a href="worker.php">Home</a>
+                    </li>
+                    <li>
+                        <a href="edit-profile.php">Edit Profile</a>
+                    </li>
+                    <li>
+                        <a href="view-assigned-jobs.php">View Assigned Jobs</a>
+                    </li>
                     <li>
                         <a href="../includes/logout.inc.php">Logout</a>
                     </li>
