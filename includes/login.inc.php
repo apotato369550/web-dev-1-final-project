@@ -66,5 +66,5 @@ if ($row["user_type"] === "client") {
     $_SESSION["user_id"] = $row["user_id"];
     $_SESSION["user_type"] = $row["user_type"];
     $_SESSION["username"] = $username;
-    header("Location: ../cashier/client.php");
+    header("Location: ../client/client.php");
 } 
