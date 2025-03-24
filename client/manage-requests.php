@@ -74,8 +74,17 @@
                     $requestDescription = $row["request_description"];
                     $requestLocation = $row["request_location"];
                     $requestStatus = $row["request_status"];
-                    $dateCreated = $row["date_created"];
-                    // add below fields
+                    ?>
+                    <input type="text" name="request-title" value="<?php echo $requestTitle ?>" placeholder="Title">
+                    <input type="text" name="request-location" value="<?php echo $requestLocation ?>" placeholder="Location">
+                    <select name="request-status">
+                            <option value="in progress" <?php if ($requestStatus === "in progress") { echo "selected"; } ?>>In Progress</option>
+                            <option value="finished" <?php if ($requestStatus === "finished") { echo "selected"; } ?>>Finished</option>
+                            <option value="cancelled" <?php if ($requestStatus === "cancelled") { echo "selected"; } ?>>Cancelled</option>
+                    </select>
+                    <textarea name="request-description" id=""><?php echo $requestDescription ?></textarea>
+                    <button type="submit" name="edit-request">Edit</button>
+                    <?php
                 } else {
                     // replace below with empty fields
                     $requestTitle = "";
@@ -83,6 +92,17 @@
                     $requestLocation = "";
                     $requestStatus = "";
                     $dateCreated = "";
+                    ?>
+                    <input type="text" name="request-title"  placeholder="Title">
+                    <input type="text" name="request-location"  placeholder="Location">
+                    <select name="request-status">
+                            <option value="in progress">In Progress</option>
+                            <option value="finished">Finished</option>
+                            <option value="cancelled">Cancelled</option>
+                    </select>
+                    <textarea name="request-description" id=""></textarea>
+                    <button type="submit" name="create-request">Create</button>
+                    <?php
                 }
                 ?>
                 </form>
