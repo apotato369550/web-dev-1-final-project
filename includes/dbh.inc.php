@@ -1,8 +1,8 @@
 <?php
 
-$uri = $_SERVER['REQUEST_URI'];
+$host = $_SERVER['HTTP_HOST'];
 
-if (str_contains($uri, "dcism.org")) {
+if (str_contains($host, "dcism.org")) {
 	$serverName = "localhost";
 	$databaseUsername = "s21103565_web_dev_finals_project";
 	$databasePassword = "andre510";
