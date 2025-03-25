@@ -75,6 +75,7 @@
                     $requestLocation = $row["request_location"];
                     $requestStatus = $row["request_status"];
                     ?>
+                    <input type="hidden" name="request-id" value="<?php echo $requestId ?>">
                     <input type="text" name="request-title" value="<?php echo $requestTitle ?>" placeholder="Title">
                     <input type="text" name="request-location" value="<?php echo $requestLocation ?>" placeholder="Location">
                     <select name="request-status">
@@ -82,7 +83,7 @@
                             <option value="finished" <?php if ($requestStatus === "finished") { echo "selected"; } ?>>Finished</option>
                             <option value="cancelled" <?php if ($requestStatus === "cancelled") { echo "selected"; } ?>>Cancelled</option>
                     </select>
-                    <textarea name="request-description" id=""><?php echo $requestDescription ?></textarea>
+                    <textarea name="request-description"><?php echo $requestDescription ?></textarea>
                     <button type="submit" name="edit-request">Edit</button>
                     <?php
                 } else {
