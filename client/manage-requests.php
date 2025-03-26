@@ -194,6 +194,11 @@
                                 <input type="text" value="true" name="edit" style="display: none;">
                                 <button type="submit" name="edit-request-status">Edit</button>
                             </form>
+                            <form action="../includes/delete-request.inc.php" method="POST">
+                                <input type="hidden" name="request-id" value="<?php echo $row["request_id"] ?>">
+                                <input type="hidden" name="author-id" value="<?php echo $_SESSION["user_id"] ?>">
+                                <button type="submit" name="delete-request">Delete</button>
+                            </form>
                         </div>
                     </div>
 

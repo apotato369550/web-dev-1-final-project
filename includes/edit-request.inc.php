@@ -1,6 +1,6 @@
 <?php 
 
-$authorId = $row["author_id"];
+$authorId = $_POST["author-id"];
 $requestTitle = $_POST["request-title"];
 $requestLocation = $_POST["request-location"];
 $requestStatus = $_POST["request-status"];
@@ -34,7 +34,7 @@ $results = mysqli_stmt_get_result($stmt);
 $row = mysqli_fetch_assoc($results);
 
 if (!$row) {
-    header("Location: ../client/manage-requests.php?error=usernotfound");
+    header("Location: ../client/manage-requests.php?error=usernotfound&authorid=".$authorId);
     exit();
 }
 
