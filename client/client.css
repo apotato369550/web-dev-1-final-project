@@ -366,3 +366,18 @@ nav {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
+
+@media only screen and (max-width: 1200px) {
+    .edit-profile-form-container {
+        width: 75vw;
+        text-align: center;
+    }
+    .request {
+        display: flex;
+        flex-direction: column;
+    }
+    .announcement {
+        flex-direction: column;
+    }
+}

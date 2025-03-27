@@ -628,4 +628,16 @@ nav {
         width: 75vw;
         text-align: center;
     }
+    .account {
+        flex-direction: column;
+    }
+    .job {
+        flex-direction: column;
+    }
+    .request {
+        flex-direction: column;
+    }
+    .announcement {
+        flex-direction: column;
+    }
 }
