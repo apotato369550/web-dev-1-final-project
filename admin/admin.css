@@ -99,6 +99,48 @@ nav {
     margin: 0px 0px 15px 0px;
 }
 
+.content {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #d9d9d9;
+    border-right: 3px solid #999999;
+    width: 24vw;
+} 
+
+.nav-sidebar-title {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.5rem;
+    margin-left: 20px;
+}
+
+.nav-sidebar-content ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.nav-sidebar-content li{
+    margin: 17px;
+}
+
+.nav-sidebar-content a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.37rem;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: 1000;
+}
+
+.nav-sidebar-selected {
+    border-bottom: #999999 3px solid;
+}
+
 .admin-content-container {
     display: flex;
     width: 100vw;
@@ -307,7 +349,7 @@ nav {
     padding: 5px;
     margin: 5px;
     font-size: 1.5rem;
-    width: 62vw;
+    width: 65vw;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
@@ -316,7 +358,7 @@ nav {
     padding: 5px;
     margin: 5px;
     font-size: 1.5rem;
-    width: 62vw;
+    width: 65vw;
     height: 25vh;
     border: 1px solid #ccc;
     resize: none;

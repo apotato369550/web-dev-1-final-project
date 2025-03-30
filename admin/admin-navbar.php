@@ -44,22 +44,7 @@
             <div class="nav-dropdown-content">
                 <ul>
                     <li>
-                        <a href="admin.php">Home</a>
-                    </li>
-                    <li>
                         <a href="edit-profile.php">Edit Profile</a>
-                    </li>
-                    <li>
-                        <a href="manage-accounts.php">Manage Accounts</a>
-                    </li>
-                    <li>
-                        <a href="manage-jobs.php">Manage Jobs</a>
-                    </li>
-                    <li>
-                        <a href="manage-requests.php">Manage Client Requests</a>
-                    </li>
-                    <li>
-                        <a href="manage-announcements.php">Manage Announcements</a>
                     </li>
                     <li>
                         <a href="../includes/logout.inc.php">Logout</a>
