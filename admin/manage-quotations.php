@@ -26,18 +26,17 @@
                     <div class="manage-quotations-title">
                         <h1>Requests to Quote</h1>
                     </div>
-
                     <div class="manage-quotations-requests-list">
                     <?php
                     include "../includes/dbh.inc.php";
-                    $sql = "SELECT * FROM client_requests WHERE status = 'pending' ORDER BY request_date DESC";
+                    $sql = "SELECT * FROM client_requests ORDER BY date_created DESC";
                     $stmt = mysqli_stmt_init($connection);
 
                     if (!mysqli_stmt_prepare($stmt, $sql)) {
                         echo "Error when preparing SQL statement.";
                     }
 
-                    if(!mysqli_stmt_execute($stmt) ) {
+                    if(!mysqli_stmt_execute($stmt)) {
                         echo "Error while executing SQL statement";
                     }
 
@@ -144,7 +143,7 @@
                     ?>
                     </div>
                 </div>
-                <div class="manage-quotations-requests">
+                <div class="manage-quotations-quotations">
                     <div class="manage-quotations-title">
                         <h1>Current Quotations</h1>
                     </div>
@@ -167,7 +166,7 @@
                         $quotationId = $row["quotation_id"];
                         $requestId = $row["request_id"];
                         $clientId = $row["client_id"];
-                        $quotationTitle = $row["quotation_title"];
+                        $quotationName = $row["quotation_name"];
                         $quotationDescription = $row["quotation_description"];
                         $quotationLocation = $row["quotation_location"];
                         $dateCreated = $row["date_created"];
@@ -195,7 +194,24 @@
 
                         ?>  
 
-                        <!-- do this tmr -->
+                        <div class="quotation">
+                            <div class="quotation-profile-picture">
+                                <img src="<?php echo $profilePicture ?>" alt="">
+                            </div>
+                            <div class="quotation-info">
+                                <h1><?php echo $quotationName ?></h1>
+                                <p><?php echo $quotationDescription ?></p>
+                                <p>Location: <?php echo $quotationLocation ?></p>
+                                <p>Date Created: <?php echo $dateCreated ?></p>
+                                <p>Last Updated: <?php echo $lastUpdated ?></p>
+                            </div>
+                            <div class="quotation-buttons">
+                                <form action="get" action="view-quote.php">
+                                    <input type="hidden" name="quotation_id" value="<?php echo $quotationId ?>">
+                                    <button type="submit" name="view-quote">View Quote</button>
+                                </form>
+                            </div>
+                        </div>
 
 
                         <?php

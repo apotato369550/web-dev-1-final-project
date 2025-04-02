@@ -665,6 +665,77 @@ nav {
     border-radius: 4px;
 }
 
+.manage-quotations-container {
+    display: flex;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+}
+
+.manage-quotations {
+    display: flex;
+    flex-direction: row;
+    margin: 7vh auto;
+    gap: 2.5rem;
+}
+
+.manage-quotations-requests-list {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 30vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.request-buttons button {
+    padding: 12px;
+    margin: 12px;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.manage-quotations-list {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 30vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.quotation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 30px;
+    border-bottom: #999999 3px solid;
+    margin: 12px;
+}
+
+.quotation-profile-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.quotation:last-child {
+    border-bottom: none;
+}
+
+.quotation-buttons button {
+    padding: 12px;
+    margin: 12px;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 @media only screen and (max-width: 1200px) {
     .edit-profile-form-container {
         width: 75vw;
@@ -680,6 +751,12 @@ nav {
         flex-direction: column;
     }
     .announcement {
+        flex-direction: column;
+    }
+    .quotation {
+        flex-direction: column;
+    }
+    .manage-quotations {
         flex-direction: column;
     }
 }

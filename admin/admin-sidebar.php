@@ -29,7 +29,7 @@
                     <a href="#">Schedule</a>
                 </li>
                 <li>
-                    <a href="#">Quotations</a>
+                    <a href="manage-quotations.php" class="<?php if ($uri === "manage-quotations.php") { echo "nav-sidebar-selected"; } ?>">Quotations</a>
                 </li>
             </ul>
         </div>
