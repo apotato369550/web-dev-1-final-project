@@ -114,21 +114,22 @@
                                 if ($quotationRow) {
                                     $quotationId = $quotationRow["quotation_id"];
                                     ?>
-                                    <form action="get" action="view-quote.php">
-                                        <input type="hidden" name="quotation_id" value="<?php echo $quotationId ?>">
-                                        <button type="submit" name="view-quote">View Quote</button>
+                                    <form method="get" action="view-quote.php">
+                                        <input type="hidden" name="quotation-id" value="<?php echo $quotationId ?>">
+                                        <button type="submit">View Quote</button>
                                     </form>
-                                    <form action="get" action="edit-quote.php">
-                                        <input type="hidden" name="quotation_id" value="<?php echo $quotationId ?>">
-                                        <button type="submit" name="view-quote">Edit Quote</button>
+                                    <form method="get" action="manage-quotation.php">
+                                        <input type="hidden" name="edit" value="true">
+                                        <input type="hidden" name="quotation-id" value="<?php echo $quotationId ?>">
+                                        <button type="submit">Edit Quote</button>
                                     </form>
                                     <?php
                                 } else {
                                     ?>
-                                    <form action="get" action="edit-quote.php">
-                                        <input type="hidden" name="request_id" value="<?php echo $requestId ?>">
-                                        <input type="hidden" name="client_id" value="<?php echo $authorId ?>">
-                                        <button type="submit" name="view-quote">Create Quote</button>
+                                    <form method="get" action="manage-quotation.php">
+                                        <input type="hidden" name="request-id" value="<?php echo $requestId ?>">
+                                        <input type="hidden" name="client-id" value="<?php echo $authorId ?>">
+                                        <button type="submit">Create Quote</button>
                                     </form>
                                     <?php
                                 }
