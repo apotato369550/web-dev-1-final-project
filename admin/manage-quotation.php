@@ -7,6 +7,43 @@
     <title>Manage Quotation - Cebu Best Value Trading</title>
 </head>
 <body>
+    <script type="text/javascript">
+        function addQuotationItem() {
+            console.log("Adding Quotation item...");
+            let xmlHttp = new XMLHttpRequest();
+            if (xmlHttp == null) {
+                alert("Your browser does not support AJAX!");
+                return;
+            }
+            let url = "../includes/add-quotation-item.inc.php";
+            let quotationItemName = document.getElementById("quotation-item-name").value;
+            let quotationItemDescription = document.getElementById("quotation-item-description").value;
+            let quotationItemQuantity = document.getElementById("quotation-item-quantity").value;
+            let quotationItemPrice = document.getElementById("quotation-item-price").value;
+            let quotationId = document.getElementById("quotation-id").value;
+
+            let params = "quotation-item-name=" + quotationItemName + "&quotation-item-description=" + quotationItemDescription + "&quotation-item-quantity=" + quotationItemQuantity + "&quotation-item-price=" + quotationItemPrice + "&quotation-id=" + quotationId;
+            
+            xmlHttp.onreadystatechange=stateChanged; 
+            xmlHttp.open("POST", url, true);
+            xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlHttp.send(params);
+
+        }
+    function stateChanged() {
+        if (xmlHttp.readyState == 4) {
+            if (xmlHttp.status == 200) {
+                // for debugging purposes
+                let response = xmlHttp.responseText;
+                console.log(response);
+                let quotationItemsList = document.getElementById("quotation-items-list");
+                quotationItemsList.innerHTML = response;
+            } else {
+                alert("Error: " + xmlHttp.statusText);
+            }
+        }
+    }
+    </script>
     <?php
     session_start();
     if (empty($_SESSION["user_type"]) || $_SESSION["user_type"] != "admin") {
@@ -108,8 +145,16 @@
                 <div class="manage-quotation-title">
                     <h1>Add/Remove Quotation Items</h1>
                 </div>
-                <div>
-                        <!-- do stuff here -->
+                <div class="manage-quotations-items-form">
+                    <input type="text" id="quotation-item-name" placeholder="Quotation Item Name" required>
+                    <input type="text" id="quotation-item-description" placeholder="Quotation Item Description" required>
+                    <input type="number" id="quotation-item-quantity" placeholder="Quotation Item Quantity" required>
+                    <input type="number" id="quotation-item-price" placeholder="Quotation Item Price" required>
+                    <input type="hidden" id="quotation-id" value="<?php echo $_GET["quotation-id"]; ?>">
+                    <button type="button" onclick="addQuotationItem()"></button>
+                </div>
+                <div class="manage-quotations-items-list" id="quotation-items-list">
+                    
                 </div>
             </div>
         </div>
