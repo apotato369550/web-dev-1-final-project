@@ -6,6 +6,7 @@ $quotationItemQuantity = $_POST["quotation-item-quantity"];
 $quotationItemPrice = $_POST["quotation-item-price"];
 $quotationId = $_POST["quotation-id"];
 
+/*
 echo $quotationItemName;
 echo "<br>";
 echo $quotationItemDescription;
@@ -16,3 +17,4 @@ echo $quotationItemPrice;
 echo "<br>";
 echo $quotationId;
 echo "<br>";
+*/
