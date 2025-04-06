@@ -18,23 +18,39 @@
     ?>
     <script type="text/javascript">
     let xmlHttp = new XMLHttpRequest();
+    let quotationItemLocalId = 0;
+
+    function removeQuotationItem() {
+        // figure this out
+        console.log("Removing quotation item...");
+        if (xmlHttp == null) {
+            alert("Your browser does not support AJAX!");
+            return;
+        }
+        let url = "../includes/remove-quotation-item.inc.php";
+
+    }
+
     function clearInputFields() {
         document.getElementById("quotation-item-name").value = "";
         document.getElementById("quotation-item-description").value = "";
         document.getElementById("quotation-item-quantity").value = "";
         document.getElementById("quotation-item-price").value = "";
     }
+
     function stateChanged() {
         if (xmlHttp.readyState == 4) {
             if (xmlHttp.status == 200) {
-                // for debugging purposes
                 let response = xmlHttp.responseText;
                 console.log(response);
-                // let quotationItemsList = document.getElementById("quotation-items-list");
-                // quotationItemsList.innerHTML = response;
-                return true
+                let quotationItemsResponse = document.getElementById("add-quotation-message");
+                quotationItemsResponse.style.color = "green";
+                quotationItemsResponse.innerHTML = response;
             } else {
                 alert("Error: " + xmlHttp.statusText);
+                let quotationItemsResponse = document.getElementById("add-quotation-message");
+                quotationItemsResponse.style.color = "red";
+                quotationItemsResponse.innerHTML = xmlHttp.statusText;
             }
         }
     }
@@ -49,6 +65,15 @@
         let quotationItemDescription = document.getElementById("quotation-item-description").value;
         let quotationItemQuantity = document.getElementById("quotation-item-quantity").value;
         let quotationItemPrice = document.getElementById("quotation-item-price").value;
+
+        // if empty, tell user to fill up form and return
+        if (quotationItemName == "" || quotationItemDescription == "" || quotationItemQuantity == "" || quotationItemPrice == "") {
+            let quotationItemsResponse = document.getElementById("add-quotation-message");
+            quotationItemsResponse.innerText = "Please fill up all fields.";
+            quotationItemsResponse.style.color = "red";
+            return;
+        }
+
         let edit = document.getElementById("edit").value;
         if (edit == "True") {
             let quotationId = document.getElementById("quotation-id").value;
@@ -58,10 +83,8 @@
             let clientId = document.getElementById("client-id").value;
             var params = "quotation-item-name=" + quotationItemName + "&quotation-item-description=" + quotationItemDescription + "&quotation-item-quantity=" + quotationItemQuantity + "&quotation-item-price=" + quotationItemPrice + "&request-id=" + requestId + "&client-id=" + clientId;
         }
-        // let quotationId = document.getElementById("quotation-id").value;
-
-        // let params = "quotation-item-name=" + quotationItemName + "&quotation-item-description=" + quotationItemDescription + "&quotation-item-quantity=" + quotationItemQuantity + "&quotation-item-price=" + quotationItemPrice + "&quotation-id=" + quotationId;
-        
+        console.log(params);
+        // for debugging purposes
         xmlHttp.onreadystatechange=stateChanged; 
         xmlHttp.open("POST", url, true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -74,24 +97,41 @@
         let quotationItemDiv = document.createElement("div");
         quotationItemDiv.className = "quotation-item";
 
+        // quotation information
+        let quotationInformationDiv = document.createElement("div");
         let quotationItemNameHeader = document.createElement("h2");
-        quotationItemNameHeader.innerHTML = quotationItemName;
-
         let quotationItemDescriptionText = document.createElement("p");
-        quotationItemDescriptionText.innerHTML = quotationItemDescription;
-
         let quotationItemQuantityText = document.createElement("p");
-        quotationItemQuantityText.innerHTML = "Quantity: " + quotationItemQuantity;
-
         let quotationItemPriceText = document.createElement("p");
-        quotationItemPriceText.innerHTML = "Price: " + quotationItemPrice;
 
-        quotationItemDiv.appendChild(quotationItemNameHeader);
-        quotationItemDiv.appendChild(quotationItemDescriptionText);
-        quotationItemDiv.appendChild(quotationItemQuantityText);
-        quotationItemDiv.appendChild(quotationItemPriceText);
+        quotationInformationDiv.className = "quotation-item-information";
+        quotationItemNameHeader.innerText = quotationItemName;
+        quotationItemDescriptionText.innerText = quotationItemDescription;
+        quotationItemQuantityText.innerText = "Quantity: " + quotationItemQuantity;
+        quotationItemPriceText.innerText = "Price: " + quotationItemPrice;
+
+        quotationInformationDiv.appendChild(quotationItemNameHeader);
+        quotationInformationDiv.appendChild(quotationItemDescriptionText);
+        quotationInformationDiv.appendChild(quotationItemQuantityText);
+        quotationInformationDiv.appendChild(quotationItemPriceText);
+
+        // make and append quotation remove button
+        let quotationRemoveButtonDiv = document.createElement("div");
+        let quotationRemoveButton = document.createElement("button");
+
+        quotationRemoveButtonDiv.className = "quotation-item-buttons";
+        quotationRemoveButton.addEventListener("click", removeQuotationItem);
+        quotationRemoveButton.innerText = "Remove Item";
+
+        quotationRemoveButtonDiv.appendChild(quotationRemoveButton);
+
+        quotationItemDiv.appendChild(quotationInformationDiv);
+        quotationItemDiv.appendChild(quotationRemoveButtonDiv);
+
         quotationItemsList.appendChild(quotationItemDiv);
-
+        quotationItemDiv.setAttribute("id", "quotation-item-" + quotationItemLocalId);
+        quotationItemLocalId++;
+        console.log("Quotation item added successfully.");
     }
     
     </script>
@@ -208,9 +248,89 @@
                     }
                     ?>
                     <button type="button" onclick="addQuotationItem()">Add Item</button>
+                    <p id="add-quotation-message"></p>
                 </div>
                 <div class="manage-quotations-items-list" id="quotation-items-list">
-                    
+                    <?php
+                    // get all the tingz
+                    include "../includes/dbh.inc.php";
+                    if (isset($_GET["edit"]) && $_GET["edit"] == "true" && isset($_GET["quotation-id"])) {
+                        $quotationId = $_GET["quotation-id"];
+                        $sql = "SELECT * FROM quotation_items WHERE quotation_id=?";
+                        $stmt = mysqli_stmt_init($connection);
+                        if (!mysqli_stmt_prepare($stmt, $sql)) {
+                            echo "Error when preparing SQL statement.";
+                        }
+                        mysqli_stmt_bind_param($stmt, "i", $quotationId);
+                        if (!mysqli_stmt_execute($stmt)) {
+                            echo "Error while executing SQL statement";
+                        }
+                        $results = mysqli_stmt_get_result($stmt);
+                        if (mysqli_num_rows($results) > 0) {
+                            while ($row = mysqli_fetch_assoc($results)) {
+                                $quotationItemName = $row["item_name"];
+                                $quotationItemDescription = $row["item_description"];
+                                $quotationItemQuantity = $row["item_quantity"];
+                                $quotationItemPrice = $row["item_cost"];
+                                ?>
+                                <div class="quotation-item">
+                                    <div class="quotation-item-information">
+                                        <h2><?php echo $quotationItemName; ?></h2>
+                                        <p><?php echo $quotationItemDescription; ?></p>
+                                        <p>Quantity: <?php echo $quotationItemQuantity; ?></p>
+                                        <p>Price: <?php echo $quotationItemPrice; ?></p>
+                                    </div>
+                                    <div class="quotation-item-buttons">
+                                        <button type="button" onclick="removeQuotationItem()">Remove Item</button>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                        } else {
+                            ?> 
+                            <p>No quotation items found</p>
+                            <?php
+                        }
+                    } else {
+                        $requestId = $_GET["request-id"];
+                        $clientId = $_GET["client-id"];
+                        $sql = "SELECT * FROM quotation_items WHERE request_id=? AND client_id=?";
+                        $stmt = mysqli_stmt_init($connection);
+                        if (!mysqli_stmt_prepare($stmt, $sql)) {
+                            echo "Error when preparing SQL statement.";
+                        }
+                        mysqli_stmt_bind_param($stmt, "ii", $requestId, $clientId);
+                        if (!mysqli_stmt_execute($stmt)) {
+                            echo "Error while executing SQL statement";
+                        }
+                        $results = mysqli_stmt_get_result($stmt);
+                        if (mysqli_num_rows($results) > 0) {
+                            while ($row = mysqli_fetch_assoc($results)) {
+                                $quotationItemName = $row["item_name"];
+                                $quotationItemDescription = $row["item_description"];
+                                $quotationItemQuantity = $row["item_quantity"];
+                                $quotationItemPrice = $row["item_cost"];
+                                ?>
+                                <div class="quotation-item">
+                                    <div class="quotation-item-information">
+                                        <h2><?php echo $quotationItemName; ?></h2>
+                                        <p><?php echo $quotationItemDescription; ?></p>
+                                        <p>Quantity: <?php echo $quotationItemQuantity; ?></p>
+                                        <p>Price: <?php echo $quotationItemPrice; ?></p>
+                                    </div>
+                                    <div class="quotation-item-buttons">
+                                        <button type="button" onclick="removeQuotationItem()">Remove Item</button>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                        } else {
+                            ?> 
+                            <p>No quotation items found</p>
+                            <?php
+                        }
+                    }
+                    ?>
                 </div>
             </div>
         </div>
