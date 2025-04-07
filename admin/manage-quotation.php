@@ -20,17 +20,6 @@
     let xmlHttp = new XMLHttpRequest();
     let quotationItemLocalId = 0;
 
-    function removeQuotationItem() {
-        // figure this out
-        console.log("Removing quotation item...");
-        if (xmlHttp == null) {
-            alert("Your browser does not support AJAX!");
-            return;
-        }
-        let url = "../includes/remove-quotation-item.inc.php";
-
-    }
-
     function clearInputFields() {
         document.getElementById("quotation-item-name").value = "";
         document.getElementById("quotation-item-description").value = "";
@@ -103,6 +92,9 @@
         let quotationItemDescriptionText = document.createElement("p");
         let quotationItemQuantityText = document.createElement("p");
         let quotationItemPriceText = document.createElement("p");
+
+        // quotation hidden inputs and stuff
+        let quotation
 
         quotationInformationDiv.className = "quotation-item-information";
         quotationItemNameHeader.innerText = quotationItemName;
@@ -268,22 +260,26 @@
                         $results = mysqli_stmt_get_result($stmt);
                         if (mysqli_num_rows($results) > 0) {
                             while ($row = mysqli_fetch_assoc($results)) {
+                                $quotationItemId = $row["item_id"];
                                 $quotationItemName = $row["item_name"];
                                 $quotationItemDescription = $row["item_description"];
                                 $quotationItemQuantity = $row["item_quantity"];
                                 $quotationItemPrice = $row["item_cost"];
                                 ?>
-                                <div class="quotation-item">
-                                    <div class="quotation-item-information">
-                                        <h2><?php echo $quotationItemName; ?></h2>
-                                        <p><?php echo $quotationItemDescription; ?></p>
-                                        <p>Quantity: <?php echo $quotationItemQuantity; ?></p>
-                                        <p>Price: <?php echo $quotationItemPrice; ?></p>
+                                    <div class="quotation-item">
+                                        <div class="quotation-item-information">
+                                            <h2><?php echo $quotationItemName; ?></h2>
+                                            <p><?php echo $quotationItemDescription; ?></p>
+                                            <p>Quantity: <?php echo $quotationItemQuantity; ?></p>
+                                            <p>Price: <?php echo $quotationItemPrice; ?></p>
+                                        </div>
+                                        <form action="../includes/delete-quotation-item.inc.php" method="post">
+                                            <input type="hidden" name="quotation-item-id" value="<?php echo $quotationItemId; ?>">
+                                            <div class="quotation-item-buttons">
+                                                <button type="submit" name="remove-item">Remove Item</button>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="quotation-item-buttons">
-                                        <button type="button" onclick="removeQuotationItem()">Remove Item</button>
-                                    </div>
-                                </div>
                                 <?php
                             }
                         } else {
@@ -306,21 +302,26 @@
                         $results = mysqli_stmt_get_result($stmt);
                         if (mysqli_num_rows($results) > 0) {
                             while ($row = mysqli_fetch_assoc($results)) {
+                                $quotationItemId = $row["item_id"];
                                 $quotationItemName = $row["item_name"];
                                 $quotationItemDescription = $row["item_description"];
                                 $quotationItemQuantity = $row["item_quantity"];
                                 $quotationItemPrice = $row["item_cost"];
                                 ?>
                                 <div class="quotation-item">
+                                    <input type="hidden" name="quotation-item-id" value="<?php echo $quotationItemId; ?>">
                                     <div class="quotation-item-information">
                                         <h2><?php echo $quotationItemName; ?></h2>
                                         <p><?php echo $quotationItemDescription; ?></p>
                                         <p>Quantity: <?php echo $quotationItemQuantity; ?></p>
                                         <p>Price: <?php echo $quotationItemPrice; ?></p>
                                     </div>
-                                    <div class="quotation-item-buttons">
-                                        <button type="button" onclick="removeQuotationItem()">Remove Item</button>
-                                    </div>
+                                    <form action="../includes/delete-quotation-item.inc.php" method="post">
+                                        <input type="hidden" name="quotation-item-id" value="<?php echo $quotationItemId; ?>">
+                                        <div class="quotation-item-buttons">
+                                            <button type="submit" name="remove-item">Remove Item</button>
+                                        </div>
+                                    </form>
                                 </div>
                                 <?php
                             }
