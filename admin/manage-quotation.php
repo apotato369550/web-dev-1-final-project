@@ -17,8 +17,47 @@
     include "admin-navbar.php";
     ?>
     <script type="text/javascript">
-    let xmlHttp = new XMLHttpRequest();
     let quotationItemLocalId = 0;
+
+    function removeQuotationItem() {
+        return
+    }
+
+    function displayProducts() {
+        let xmlHttp = new XMLHttpRequest();
+        if (xmlHttp == null) {
+            alert("Your browser does not support AJAX!");
+            return;
+        }
+        let url = "../includes/get-quotation-items.inc.php";
+        let params = ""
+        if (document.getElementById("edit").value == "True") {
+            let quotationId = document.getElementById("quotation-id").value;
+            params = "quotation-id=" + quotationId;
+        } else {
+            let requestId = document.getElementById("request-id").value;
+            let clientId = document.getElementById("client-id").value;
+            params = "request-id=" + requestId + "&client-id=" + clientId;
+
+        }
+        var quotationItems = {}
+        xmlHttp.responseType = "json";
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4) {
+                if (xmlHttp.status == 200) {
+                    var quotationItems = xmlHttp.response;
+                    console.log(quotationItems);
+                } else {
+                    alert("Error: " + xmlHttp.statusText);
+                }
+            }
+        }; 
+        xmlHttp.open('POST', url, true);
+        xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlHttp.send(params);
+
+        console.log(quotationItems);
+    }
 
     function clearInputFields() {
         document.getElementById("quotation-item-name").value = "";
@@ -27,23 +66,8 @@
         document.getElementById("quotation-item-price").value = "";
     }
 
-    function stateChanged() {
-        if (xmlHttp.readyState == 4) {
-            if (xmlHttp.status == 200) {
-                let response = xmlHttp.responseText;
-                console.log(response);
-                let quotationItemsResponse = document.getElementById("add-quotation-message");
-                quotationItemsResponse.style.color = "green";
-                quotationItemsResponse.innerHTML = response;
-            } else {
-                alert("Error: " + xmlHttp.statusText);
-                let quotationItemsResponse = document.getElementById("add-quotation-message");
-                quotationItemsResponse.style.color = "red";
-                quotationItemsResponse.innerHTML = xmlHttp.statusText;
-            }
-        }
-    }
     function addQuotationItem() {
+        let xmlHttp = new XMLHttpRequest();
         console.log("Adding Quotation item...");
         if (xmlHttp == null) {
             alert("Your browser does not support AJAX!");
@@ -74,7 +98,23 @@
         }
         console.log(params);
         // for debugging purposes
-        xmlHttp.onreadystatechange=stateChanged; 
+        xmlHttp.responseType = "text";
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4) {
+                if (xmlHttp.status == 200) {
+                    let response = xmlHttp.responseText;
+                    console.log(response);
+                    let quotationItemsResponse = document.getElementById("add-quotation-message");
+                    quotationItemsResponse.style.color = "green";
+                    quotationItemsResponse.innerHTML = response;
+                } else {
+                    alert("Error: " + xmlHttp.statusText);
+                    let quotationItemsResponse = document.getElementById("add-quotation-message");
+                    quotationItemsResponse.style.color = "red";
+                    quotationItemsResponse.innerHTML = xmlHttp.statusText;
+                }
+            }
+        }; 
         xmlHttp.open("POST", url, true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlHttp.send(params);
@@ -126,6 +166,9 @@
         console.log("Quotation item added successfully.");
     }
     
+    window.onload = function() {
+        displayProducts();
+    }
     </script>
 
     <div class="content">
@@ -245,6 +288,7 @@
                 <div class="manage-quotations-items-list" id="quotation-items-list">
                     <?php
                     // get all the tingz
+                    /*
                     include "../includes/dbh.inc.php";
                     if (isset($_GET["edit"]) && $_GET["edit"] == "true" && isset($_GET["quotation-id"])) {
                         $quotationId = $_GET["quotation-id"];
@@ -331,6 +375,7 @@
                             <?php
                         }
                     }
+                    */
                     ?>
                 </div>
             </div>
