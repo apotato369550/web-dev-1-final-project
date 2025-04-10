@@ -673,11 +673,8 @@ nav {
     align-items: center;
 }
 
-.manage-quotations {
-    display: flex;
-    flex-direction: row;
-    margin: 7vh auto;
-    gap: 2.5rem;
+.manage-quotation {
+    margin: 0px 3vw;
 }
 
 .manage-quotations-requests-list {
@@ -734,6 +731,114 @@ nav {
     font-size: 1.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.manage-quotation-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.manage-quotation-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.manage-quotation-form input {
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.5rem;
+    width: 65vw;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.manage-quotation-form textarea {
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.5rem;
+    width: 65vw;
+    height: 25vh;
+    border: 1px solid #ccc;
+    resize: none;
+    border-radius: 4px;
+}
+
+.manage-quotation-form button {
+    padding: 5px;
+    margin: 5px auto;
+    width: 100%;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.manage-quotations-items-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.manage-quotations-items-form input {
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.5rem;
+    width: 65vw;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.manage-quotations-items-form button {
+    padding: 15px;
+    margin: 5px auto;
+    width: 65vw;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.manage-quotations-items-list {
+    display: flex;
+    flex-direction: column;
+    margin: 5vh auto;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.quotation-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: #999999 3px solid;
+    margin: 12px;
+    padding: 12px;
+    justify-content: space-between;
+}
+
+.quotation-item button {
+    padding: 12px;
+    margin: 12px;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.quotation-item:last-child {
+    border-bottom: none;
 }
 
 @media only screen and (max-width: 1200px) {
