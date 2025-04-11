@@ -230,13 +230,15 @@
                     if (isset($_GET["edit"]) && $_GET["edit"] == "true" && isset($_GET["quotation-id"])) {
                         ?>
                         <form action="../includes/edit-quotation.inc.php" method="post" id="quotation-form">
-                        <input type="hidden" name="quotation-id" value="<?php echo $_GET["quotation-id"]; ?>">
+                            <input type="hidden" name="author-id" value="<?php echo $_SESSION["user_id"]; ?>">
+                            <input type="hidden" name="quotation-id" value="<?php echo $_GET["quotation-id"]; ?>">
                         <?php
                     } else {
                         ?>
                         <form action="../includes/create-quotation.inc.php" method="post" id="quotation-form">
-                        <input type="hidden" name="request-id" value="<?php echo $_GET["request-id"]; ?>">
-                        <input type="hidden" name="client-id" value="<?php echo $_GET["client-id"]; ?>">
+                            <input type="hidden" name="author-id" value="<?php echo $_SESSION["user_id"]; ?>">    
+                            <input type="hidden" name="request-id" value="<?php echo $_GET["request-id"]; ?>">
+                            <input type="hidden" name="client-id" value="<?php echo $_GET["client-id"]; ?>">
                         <?php
                     }
                     ?>
