@@ -60,14 +60,14 @@ $quotationTitle = $_POST['quotation-name'];
 $quotationLocation = $_POST['quotation-location'];
 $quotationDescription = $_POST['quotation-description'];
 
-$sql = "UPDATE quotations SET quotation_title=?, quotation_description=?, quotation_location=? WHERE quotation_id=?";
+$sql = "UPDATE quotations SET quotation_title=?, quotation_location=?, quotation_description=? WHERE quotation_id=?";
 
 if (!mysqli_stmt_prepare($stmt, $sql)) {
     header("Location: ../admin/manage-quotation.php?error=sqlprepare3");
     exit();
 }
 
-mysqli_stmt_bind_param($stmt, "sssi", $quotationTitle, $quotationDescription, $quotationLocation, $quotationId);
+mysqli_stmt_bind_param($stmt, "sssi", $quotationTitle, $quotationLocation, $quotationDescription, $quotationId);
 
 if (!mysqli_stmt_execute($stmt)) {
     header("Location: ../admin/manage-quotation.php?error=sqlexecute");
