@@ -677,6 +677,14 @@ nav {
     margin: 0px 3vw;
 }
 
+.manage-quotations {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-left: 30px;
+}
+
+
 .manage-quotations-requests-list {
     display: flex;
     flex-direction: column;

@@ -105,6 +105,7 @@
             let quotationItemDescriptionText = document.createElement("p");
             let quotationItemQuantityText = document.createElement("p");
             let quotationItemPriceText = document.createElement("p");
+            let quotationItemTotalPriceText= document.createElement("p");
 
             // quotation hidden inputs and stuff
             let quotationRemoveButtonDiv = document.createElement("div");
@@ -114,12 +115,14 @@
             quotationItemNameHeader.innerText = item["item_name"];
             quotationItemDescriptionText.innerText = item["item_description"];
             quotationItemQuantityText.innerText = "Quantity: " + item["item_quantity"];
-            quotationItemPriceText.innerText = "Price: " + item["item_price"];
+            quotationItemPriceText.innerText = "Price per Item: " + item["item_cost"];
+            quotationItemTotalPriceText.innerText = "Total Price: " + item["item_cost"] * item["item_quantity"];
 
             quotationInformationDiv.appendChild(quotationItemNameHeader);
             quotationInformationDiv.appendChild(quotationItemDescriptionText);
             quotationInformationDiv.appendChild(quotationItemQuantityText);
             quotationInformationDiv.appendChild(quotationItemPriceText);
+            quotationInformationDiv.appendChild(quotationItemTotalPriceText);
 
             // make and append quotation remove button
             quotationRemoveButtonDiv.className = "quotation-item-buttons";
@@ -296,10 +299,10 @@
                     <h1>Add/Remove Quotation Items</h1>
                 </div>
                 <div class="manage-quotations-items-form">
-                    <input type="text" id="quotation-item-name" placeholder="Quotation Item Name" required>
-                    <input type="text" id="quotation-item-description" placeholder="Quotation Item Description" required>
-                    <input type="number" id="quotation-item-quantity" placeholder="Quotation Item Quantity" required>
-                    <input type="number" id="quotation-item-price" placeholder="Quotation Item Price" required>
+                    <input type="text" id="quotation-item-name" placeholder="Item Name" required>
+                    <input type="text" id="quotation-item-description" placeholder="Item Description" required>
+                    <input type="number" id="quotation-item-quantity" placeholder="Item Quantity" required>
+                    <input type="number" id="quotation-item-price" placeholder="Price Per Item" required>
                     <?php
                     if (isset($_GET["edit"]) && $_GET["edit"] == "true" && isset($_GET["quotation-id"])) {
                         ?>

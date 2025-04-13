@@ -5,6 +5,10 @@
     <?php 
     $uri = $_SERVER['REQUEST_URI'];
     $uri = explode("/", $uri)[count(explode("/", $uri)) - 1];
+
+    if (str_contains($uri, "?")) {
+        $uri = explode("?", $uri)[0];
+    }
     // echo $uri;
     ?>
     <div class="nav-sidebar-container">
@@ -29,7 +33,7 @@
                     <a href="#">Schedule</a>
                 </li>
                 <li>
-                    <a href="manage-quotations.php" class="<?php if ($uri === "manage-quotations.php") { echo "nav-sidebar-selected"; } ?>">Quotations</a>
+                    <a href="manage-quotations.php" class="<?php if ($uri === "manage-quotations.php" || $uri === "manage-quotation.php" || $uri === "view-quotation.php") { echo "nav-sidebar-selected"; } ?>">Quotations</a>
                 </li>
             </ul>
         </div>

@@ -114,7 +114,7 @@
                                 if ($quotationRow) {
                                     $quotationId = $quotationRow["quotation_id"];
                                     ?>
-                                    <form method="get" action="view-quote.php">
+                                    <form method="get" action="view-quotation.php">
                                         <input type="hidden" name="quotation-id" value="<?php echo $quotationId ?>">
                                         <button type="submit">View Quote</button>
                                     </form>
