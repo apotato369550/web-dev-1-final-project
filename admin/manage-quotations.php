@@ -207,8 +207,8 @@
                                 <p>Last Updated: <?php echo $lastUpdated ?></p>
                             </div>
                             <div class="quotation-buttons">
-                                <form action="get" action="view-quote.php">
-                                    <input type="hidden" name="quotation_id" value="<?php echo $quotationId ?>">
+                                <form method="get" action="view-quotation.php">
+                                    <input type="hidden" name="quotation-id" value="<?php echo $quotationId ?>">
                                     <button type="submit" name="view-quote">View Quote</button>
                                 </form>
                             </div>

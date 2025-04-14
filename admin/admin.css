@@ -849,6 +849,40 @@ nav {
     border-bottom: none;
 }
 
+.view-quotation-container {
+    display: flex;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+}
+
+.view-quotation {
+    margin: 0px 3vw;
+}
+
+.view-quotation-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.view-quotation-items {
+    display: flex;
+    flex-direction: column;
+    margin: 5vh auto;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+
 @media only screen and (max-width: 1200px) {
     .edit-profile-form-container {
         width: 75vw;

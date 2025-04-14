@@ -322,7 +322,6 @@
                     <p id="add-quotation-message"></p>
                 </div>
                 <div class="manage-quotations-items-list" id="quotation-items-list">
-
                 </div>
             </div>
         </div>
