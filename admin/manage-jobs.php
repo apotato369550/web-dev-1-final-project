@@ -293,6 +293,10 @@
                                     <input type="number" name="job-id" value="<?php echo $currentJobId ?>" style="display: none;">
                                     <button type="submit" name="delete-job">Delete Job</button>
                                 </form>
+                                <form action="manage-tasks.php" method="get">
+                                    <input type="number" name="job-id" value="<?php echo $currentJobId ?>" style="display: none;">
+                                    <button type="submit">Manage Tasks</button>
+                                </form>
                             </div>
                         </div>
                         <?php

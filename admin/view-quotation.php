@@ -73,6 +73,7 @@
                 </div>
                 <div class="view-quotation-items">
                     <?php 
+                    $totalQuotationCost = 0;
                     $sql = "SELECT * FROM quotation_items WHERE quotation_id=?";
 
                     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -93,6 +94,7 @@
                         $itemQuantity = $row["item_quantity"];
                         $itemCost = $row["item_cost"];
                         $itemTotalCost = $itemQuantity * $itemCost;
+                        $totalQuotationCost += $itemTotalCost;
 
                         ?>
                         <div class="view-quotation-item">
@@ -106,6 +108,9 @@
                     }
                     
                     ?>
+                    <div class="total-quotation-cost">
+                        <h2>Total Quotation Cost: <?php echo $totalQuotationCost ?></h2>
+                    </div>
                 </div>
             </div>
         </div>
