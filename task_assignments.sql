@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2025 at 05:07 AM
+-- Generation Time: Apr 16, 2025 at 01:33 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `task_assignments` (
   `task_assignment_id` int(11) NOT NULL,
+  `job_id` int(11) NOT NULL,
   `task_id` int(11) NOT NULL,
   `worker_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

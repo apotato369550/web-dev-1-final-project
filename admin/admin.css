@@ -882,6 +882,91 @@ nav {
     background-color: rgb(255, 255, 255, 0.75);
 }
 
+.manage-tasks-container {
+    display: flex;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+}
+
+.manage-tasks {
+    margin: 0vh auto;
+}
+
+.manage-tasks-form {
+    display: flex;
+    flex-direction: column;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.manage-tasks-form input {
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.5rem;
+    width: 65vw;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.manage-tasks-form textarea {
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.5rem;
+    width: 65vw;
+    height: 25vh;
+    border: 1px solid #ccc;
+    resize: none;
+    border-radius: 4px;
+}
+
+.manage-tasks-form button {
+    padding: 5px;
+    margin: 5px auto;
+    width: 100%;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.manage-tasks-checkbox-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows the checkboxes to wrap to the next line if there's not enough space */
+    gap: 1rem; /* Adds space between the checkboxes */
+    margin: 1rem auto;
+    width: 65vw;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.checkbox-container input {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+    appearance: none;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.manage-tasks-list {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
 
 @media only screen and (max-width: 1200px) {
     .edit-profile-form-container {
