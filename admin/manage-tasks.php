@@ -38,17 +38,18 @@
                 <div class="manage-tasks-form">
                     <?php 
                     // make a form to create a task
-                    if (isset($_GET["edit"]) && $_GET["edit"] == "true" && isset($_GET["task-id"])) {
+                    if (isset($_GET["edit"]) && $_GET["edit"] == "true" && isset($_GET["task-id"]) && !empty($_GET["task-id"]) && isset($_GET["job-id"]) && !empty($_GET["job-id"])) {
                         include "../includes/dbh.inc.php";
                         $taskId = $_GET["task-id"];
-                        $sql = "SELECT * FROM tasks WHERE task_id=?";
+                        $jobId = $_GET["job-id"];
+                        $sql = "SELECT * FROM tasks WHERE task_id=? AND job_id=?";
                         $stmt = mysqli_stmt_init($connection);
 
                         if (!mysqli_stmt_prepare($stmt, $sql)) {
                             echo "Error when preparing SQL statement.";
                         } 
 
-                        mysqli_stmt_bind_param($stmt, "i", $taskId);
+                        mysqli_stmt_bind_param($stmt, "ii", $taskId, $jobId);
 
                         if (!mysqli_stmt_execute($stmt)) {
                             echo "Error while executing SQL statement";
@@ -56,14 +57,15 @@
                        
                         $result = mysqli_stmt_get_result($stmt);
                         $row = mysqli_fetch_assoc($result);
-                        $taskTitle = $row["task_title"];
+                        $taskName = $row["task_name"];
                         $taskDescription = $row["task_description"];
 
                         ?>
                         <form action="../edit-task.inc.php">
                             <input type="hidden" name="task-id" value="<?php echo $_GET["task-id"]; ?>">
+                            <input type="hidden" name="job-id" value="<?php echo $_GET["job-id"]; ?>">
                             <input type="hidden" name="author-id" value="<?php echo $_SESSION["user_id"]; ?>">
-                            <input type="text" name="task-title" placeholder="Task Title" value="<?php echo $taskTitle ?>" required>
+                            <input type="text" name="task-name" placeholder="Task Name" value="<?php echo $taskName ?>" required>
                             <textarea name="task-description" placeholder="Task Description" required> <?php echo $taskDescription; ?> </textarea>
                             <button type="submit" name="edit-task">Edit Task</button>
                             <?php
@@ -98,19 +100,18 @@
                                 ?> 
                                 <div class="checkbox-container">
                                     <input type="checkbox" name="workers[]" value="<?php echo $allWorkersRow["user_id"]; ?>" <?php if (in_array($allWorkersRow["user_id"], $assignedWorkers)) echo "checked"; ?>>
-                                    <label for="workers[]"><?php echo $allWorkersResult["username"] ?></label>
+                                    <label for="workers[]"><?php echo $allWorkersRow["username"] ?></label>
                                 </div>
                                 <?php
                             }
                             
                             ?>
-                            </div>
                         </form>
                         <?php
                     } else {
                         ?>
                         <input type="hidden" name="author-id" value="<?php echo $_SESSION["user_id"]; ?>">
-                        <input type="text" name="task-title" placeholder="Task Title" required>
+                        <input type="text" name="task-name" placeholder="Task Name" required>
                         <textarea name="task-description" placeholder="Task Description" required>Enter task description here...</textarea>
                         <button name="create-task">Create Task</button>
                         <?php
@@ -166,16 +167,66 @@
                         $taskDescription = $row["task_description"];
                         ?>
                         <div class="task">
-                            <h2><?php echo $taskName; ?></h2>
-                            <p><?php echo $taskDescription; ?></p>
-                            <form action="manage-tasks.php" method="get">
-                                <input type="hidden" name="job-id" value="<?php echo $_GET["job-id"]; ?>">
-                                <button type="submit" name="edit" value="true">Edit</button>
-                            </form>
-                            <form action="../includes/delete-task.inc.php">
-                                <input type="hidden" name="task-id" value="<?php echo $taskId; ?>">
-                                <button type="submit" name="delete-task">Delete</button>
-                            </form>
+                            <div class="task-info">
+                                <h2><?php echo $taskName; ?></h2>
+                                <p><?php echo $taskDescription; ?></p>
+                            </div>
+                            <div class="task-assigned">
+                                <?php 
+                                $sql = "SELECT * FROM task_assignments WHERE job_id=? AND task_id=?";
+
+                                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                                    echo "Error when preparing SQL statement.";
+                                }
+
+                                mysqli_stmt_bind_param($stmt, "ii", $_GET["job-id"], $taskId);
+
+                                if (!mysqli_stmt_execute($stmt)) {
+                                    echo "Error while executing SQL statement";
+                                }
+
+                                $assignedWorkersResult = mysqli_stmt_get_result($stmt);
+
+                                while ($assignedWorkersRow = mysqli_fetch_assoc($assignedWorkersResult)) {
+                                    $workerId = $assignedWorkersRow["worker_id"];
+                                    $sql = "SELECT * FROM users WHERE user_id=? AND application_status='approved'";
+                                    $stmt = mysqli_stmt_init($connection);
+
+                                    if (!mysqli_stmt_prepare($stmt, $sql)) {
+                                        echo "Error when preparing SQL statement.";
+                                    } 
+
+                                    mysqli_stmt_bind_param($stmt, "i", $workerId);
+
+                                    if (!mysqli_stmt_execute($stmt)) {
+                                        echo "Error while executing SQL statement";
+                                    } 
+
+                                    $workerResult = mysqli_stmt_get_result($stmt);
+                                    $workerRow = mysqli_fetch_assoc($workerResult);
+
+                                    // insert sample data here
+                                    
+                                    if ($workerRow) {
+                                        $workerUsername = $workerRow["username"];
+                                        ?>  
+                                        <p><?php echo $workerUsername ?></p>
+                                        <?php
+                                    }
+                                }   
+                                ?>
+                            </div>
+                            <div class="task-buttons">
+                                <form action="manage-tasks.php" method="get">
+                                    <input type="hidden" name="job-id" value="<?php echo $_GET["job-id"]; ?>">
+                                    <input type="hidden" name="task-id" value="<?php echo $taskId; ?>" hidden>
+                                    <button type="submit" name="edit" value="true">Edit</button>
+                                </form>
+                                <form action="../includes/delete-task.inc.php">
+                                    <input type="hidden" name="task-id" value="<?php echo $taskId; ?>">
+                                    <button type="submit" name="delete-task">Delete</button>
+                                </form>
+                            </div>
                         </div>
                         <?php
                     }

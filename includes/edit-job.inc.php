@@ -68,6 +68,28 @@ if ($jobStatus === "finished") {
     }
 }
 
+// get old workers
+$sql = "SELECT worker_id FROM job_assignments WHERE job_id=?";
+
+if (!mysqli_stmt_prepare($stmt, $sql)) {
+    header("Location: ../admin/manage-jobs.php?error=sqlprepare");
+    exit();
+} 
+
+mysqli_stmt_bind_param($stmt, "i", $jobId);
+
+if (!mysqli_stmt_execute($stmt)) {
+    header("Location: ../admin/manage-jobs.php?error=sqlexecute");
+    exit();
+}
+
+$results = mysqli_stmt_get_result($stmt);
+$oldWorkers = []
+
+while ($row = mysqli_fetch_assoc($results)) {
+    $oldWorkers[] = $row["worker_id"];
+}
+
 $sql = "DELETE FROM job_assignments WHERE job_id=?";
 
 if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -97,6 +119,27 @@ foreach ($workersList as $worker) {
         exit();
     }
 }
+
+// remove old workers from task_assignments
+
+$removedWorkers = array_diff($oldWorkers, $workersList);
+
+foreach ($removedWorkers as $worker) {
+    $sql = "DELETE FROM task_assignments WHERE job_id=? AND worker_id=?";
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("Location: ../admin/manage-jobs.php?error=sqlprepare");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ii", $jobId, $worker);
+
+    if (!mysqli_stmt_execute($stmt)) {
+        header("Location: ../admin/manage-jobs.php?error=sqlexecute");
+        exit();
+    }
+}
+
 
 header("Location: ../admin/manage-jobs.php?success=jobedited");
 exit();

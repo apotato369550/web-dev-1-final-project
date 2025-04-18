@@ -968,6 +968,34 @@ nav {
     background-color: rgb(255, 255, 255, 0.75);
 }
 
+.task {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 30px;
+    border-bottom: #999999 3px solid;
+    margin: 12px;
+    justify-content: space-between;
+}
+
+.task:last-child {
+    border-bottom: none;
+}
+
+.task-buttons {
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+}
+
+.task-buttons button {
+    padding: 12px;
+    margin: 12px;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 @media only screen and (max-width: 1200px) {
     .edit-profile-form-container {
         width: 75vw;
