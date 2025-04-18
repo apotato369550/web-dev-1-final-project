@@ -38,7 +38,7 @@
                 <div class="manage-tasks-form">
                     <?php 
                     // make a form to create a task
-                    if (isset($_GET["edit"]) && $_GET["edit"] == "true" && isset($_GET["task-id"]) && !empty($_GET["task-id"]) && isset($_GET["job-id"]) && !empty($_GET["job-id"])) {
+                    if (isset($_GET["edit"]) && $_GET["edit"] == "true" && isset($_GET["task-id"])) {
                         include "../includes/dbh.inc.php";
                         $taskId = $_GET["task-id"];
                         $jobId = $_GET["job-id"];
@@ -59,6 +59,7 @@
                         $row = mysqli_fetch_assoc($result);
                         $taskName = $row["task_name"];
                         $taskDescription = $row["task_description"];
+                        $taskDate = $row["task_date"];
 
                         ?>
                         <form action="../edit-task.inc.php">
@@ -67,6 +68,7 @@
                             <input type="hidden" name="author-id" value="<?php echo $_SESSION["user_id"]; ?>">
                             <input type="text" name="task-name" placeholder="Task Name" value="<?php echo $taskName ?>" required>
                             <textarea name="task-description" placeholder="Task Description" required> <?php echo $taskDescription; ?> </textarea>
+                            <input type="date" name="task-date" placeholder="Task Deadline" value="<?php echo $taskDate ?>" required>
                             <button type="submit" name="edit-task">Edit Task</button>
                             <?php
                             $sql = "SELECT * FROM users WHERE user_type='worker'";
@@ -107,12 +109,18 @@
                             
                             ?>
                         </form>
+                        <form action="manage-tasks.php" method="get">
+                            <br>
+                            <button type="submit">Create a task instead</button>
+                        </form>
                         <?php
                     } else {
                         ?>
                         <input type="hidden" name="author-id" value="<?php echo $_SESSION["user_id"]; ?>">
+                        <input type="hidden" name="job-id" value="<?php echo $_GET["job-id"]; ?>">
                         <input type="text" name="task-name" placeholder="Task Name" required>
                         <textarea name="task-description" placeholder="Task Description" required>Enter task description here...</textarea>
+                        <input type="date" name="task-date" placeholder="Task Deadline" required>
                         <button name="create-task">Create Task</button>
                         <?php
                         $sql = "SELECT * FROM users WHERE user_type='worker'";
@@ -165,11 +173,13 @@
                         $taskId = $row["task_id"];
                         $taskName = $row["task_name"];
                         $taskDescription = $row["task_description"];
+                        $taskDate = $row["task_date"];
                         ?>
                         <div class="task">
                             <div class="task-info">
                                 <h2><?php echo $taskName; ?></h2>
                                 <p><?php echo $taskDescription; ?></p>
+                                <p>Date due: <?php echo $taskDate ?></p>
                             </div>
                             <div class="task-assigned">
                                 <?php 
