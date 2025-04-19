@@ -21,7 +21,7 @@
                     <a href="manage-accounts.php" class="<?php if ($uri === "manage-accounts.php") { echo "nav-sidebar-selected"; } ?>">Accounts</a>
                 </li>
                 <li>
-                    <a href="manage-jobs.php" class="<?php if ($uri === "manage-jobs.php") { echo "nav-sidebar-selected"; } ?>">Jobs</a>
+                    <a href="manage-jobs.php" class="<?php if ($uri === "manage-jobs.php" || $uri === "manage-tasks.php") { echo "nav-sidebar-selected"; } ?>">Jobs</a>
                 </li>
                 <li>
                     <a href="manage-requests.php" class="<?php if ($uri === "manage-requests.php") { echo "nav-sidebar-selected"; } ?>">Client Requests</a>
@@ -30,7 +30,7 @@
                     <a href="manage-announcements.php" class="<?php if ($uri === "manage-announcements.php") { echo "nav-sidebar-selected"; } ?>">Announcements</a>
                 </li>
                 <li>
-                    <a href="#">Schedule</a>
+                    <a href="manage-schedule.php" class="<?php if ($uri === "manage-schedule.php") { echo "nav-sidebar-selected"; } ?>">Schedule</a>
                 </li>
                 <li>
                     <a href="manage-quotations.php" class="<?php if ($uri === "manage-quotations.php" || $uri === "manage-quotation.php" || $uri === "view-quotation.php") { echo "nav-sidebar-selected"; } ?>">Quotations</a>

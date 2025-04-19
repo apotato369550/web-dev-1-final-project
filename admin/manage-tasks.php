@@ -62,7 +62,7 @@
                         $taskDate = $row["task_date"];
 
                         ?>
-                        <form action="../edit-task.inc.php">
+                        <form action="../includes/edit-task.inc.php" method="post">
                             <input type="hidden" name="task-id" value="<?php echo $_GET["task-id"]; ?>">
                             <input type="hidden" name="job-id" value="<?php echo $_GET["job-id"]; ?>">
                             <input type="hidden" name="author-id" value="<?php echo $_SESSION["user_id"]; ?>">
@@ -116,12 +116,13 @@
                         <?php
                     } else {
                         ?>
+                        <form action="../includes/create-task.inc.php" method="post">
                         <input type="hidden" name="author-id" value="<?php echo $_SESSION["user_id"]; ?>">
                         <input type="hidden" name="job-id" value="<?php echo $_GET["job-id"]; ?>">
                         <input type="text" name="task-name" placeholder="Task Name" required>
                         <textarea name="task-description" placeholder="Task Description" required>Enter task description here...</textarea>
                         <input type="date" name="task-date" placeholder="Task Deadline" required>
-                        <button name="create-task">Create Task</button>
+                        <button type="submit" name="create-task">Create Task</button>
                         <?php
                         $sql = "SELECT * FROM users WHERE user_type='worker'";
                         if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -145,6 +146,9 @@
                             </div>
                             <?php
                         }
+                        ?>
+                        </form>
+                        <?php
                     }
                     ?>
                     </div>
@@ -232,7 +236,9 @@
                                     <input type="hidden" name="task-id" value="<?php echo $taskId; ?>" hidden>
                                     <button type="submit" name="edit" value="true">Edit</button>
                                 </form>
-                                <form action="../includes/delete-task.inc.php">
+                                <form action="../includes/delete-task.inc.php" method="post">
+                                    <input type="hidden" name="author-id" value="<?php echo $_SESSION["user_id"]; ?>">
+                                    <input type="hidden" name="job-id" value="<?php echo $_GET["job-id"]; ?>">
                                     <input type="hidden" name="task-id" value="<?php echo $taskId; ?>">
                                     <button type="submit" name="delete-task">Delete</button>
                                 </form>
