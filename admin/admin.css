@@ -996,6 +996,14 @@ nav {
     border-radius: 4px;
 }
 
+.task-buttons select {
+    padding: 12px;
+    margin: 12px;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 @media only screen and (max-width: 1200px) {
     .edit-profile-form-container {
         width: 75vw;

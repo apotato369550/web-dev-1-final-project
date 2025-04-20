@@ -28,7 +28,7 @@
                 include "../includes/dbh.inc.php";
 
                 $stmt = mysqli_stmt_init($connection);
-                $sql = "SELECT * FROM job_assignments WHERE worker_id=?";
+                $sql = "SELECT * FROM job_assignments WHERE worker_id=?";   
 
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
                     echo "Error when preparing SQL statement.";
@@ -49,7 +49,7 @@
                 }
 
                 foreach ($listOfJobs as $jobId) {
-                    $sql = "SELECT * FROM jobs WHERE job_id=?";
+                    $sql = "SELECT * FROM jobs WHERE job_id=? AND job_status='in progress'";
 
                     if (!mysqli_stmt_prepare($stmt, $sql)) {
                         echo "Error when preparing SQL statement.";
@@ -104,6 +104,74 @@
                             <p>Date Started: <?php echo $dateStarted ?></p>
                             <p><?php echo $jobDescription ?></p>
                         </div>
+
+                        <div>
+                            <h1>Tasks Assigned: </h1>
+                        </div>
+
+                        <?php 
+                        // select task assignments where job and worker matches
+                        $sql = "SELECT * FROM task_assignments WHERE job_id=? AND worker_id=?";
+
+                        if (!mysqli_stmt_prepare($stmt, $sql)) {
+                            echo "Error when preparing SQL statement.";
+                        }
+
+                        mysqli_stmt_bind_param($stmt, "ii", $jobId, $_SESSION["user_id"]);
+
+                        if (!mysqli_stmt_execute($stmt)) {
+                            echo "Error while executing SQL statement";
+                        }
+
+                        $taskResults = mysqli_stmt_get_result($stmt);
+                        $assignedTaskIds = [];
+                        
+                        while ($taskRow = mysqli_fetch_assoc($taskResults)) {
+                            array_push($assignedTaskIds, $taskRow["task_id"]);
+                        }
+
+                        // select tasks where task id is in assigned task ids
+                        foreach($assignedTaskIds as $taskId) {
+                            $sql = "SELECT * FROM tasks WHERE task_id=?";
+
+                            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                                echo "Error when preparing SQL statement.";
+                            }
+
+                            mysqli_stmt_bind_param($stmt, "i", $taskId);
+
+                            if (!mysqli_stmt_execute($stmt)) {
+                                echo "Error while executing SQL statement";
+                            }
+
+                            $taskResults = mysqli_stmt_get_result($stmt);
+                            $taskRow = mysqli_fetch_assoc($taskResults);
+                            
+                            $taskName = $taskRow["task_name"];
+                            $taskDescription = $taskRow["task_description"];
+                            $taskDate = $taskRow["task_date"];
+                            $taskStatus = $taskRow["status"];
+                            
+                            ?>
+                            <div class="job-task">
+                                <div class="job-task-info">
+                                    <h2><?php echo $taskName ?></h2>
+                                    <p><?php echo $taskDescription ?></p>
+                                    <p>Date: <?php echo $taskDate ?></p>
+                                    <p>Status: <?php echo $taskStatus ?></p>
+                                </div>
+                                <div class="job-task-buttons">
+                                    <form action="view-task.php" method="get">
+                                        <input type="hidden" name="task_id" value="<?php echo $taskId ?>">
+                                        <input type="hidden" name="job_id" value="<?php echo $jobId ?>">
+                                        <button type="submit">View Task</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <?php
+                        }
+
+                        ?>
                     </div>
                     <?php
 

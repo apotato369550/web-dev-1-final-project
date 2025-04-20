@@ -124,10 +124,27 @@ nav {
 .worker-content-title {
     width: 65vw;
     margin: auto;
-    margin-left: -0.5vw;
+}
+
+.job {
+    display: block;
+}
+
+.task {
+    display: block;
 }
 
 .worker-content-announcement {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.worker-content-tasks {
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -147,12 +164,51 @@ nav {
     background-color: rgb(255, 255, 255, 0.75);
 }
 
-.job {
+.worker-content-job {
     display: flex;
-    flex-direction: row;
-    column-gap: 30px;
+    flex-direction: column;
     border-bottom: #999999 3px solid;
     margin: 12px;
+}
+
+.worker-content-job:last-child {
+    border-bottom: none;
+}
+
+.worker-content-task {
+    display: flex;
+    flex-direction: row;
+    border-bottom: #999999 3px solid;
+    margin: 12px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.worker-content-task-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.worker-content-task-buttons button {
+    padding: 12px;
+    margin: 12px;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.worker-content-task-buttons select {
+    padding: 12px;
+    margin: 12px;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.worker-content-task:last-child {
+    border-bottom: none;
 }
 
 .job:last-child {

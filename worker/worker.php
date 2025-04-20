@@ -84,6 +84,99 @@
                 }
                 ?>
             </div>
+
+            <div class="worker-content-title">
+                <h1>Your Tasks for Today</h1>
+            </div>
+
+            <div class="worker-content-tasks">
+                <?php
+                $userId = $_SESSION["user_id"];
+                $stmt = mysqli_stmt_init($connection);
+                // get jobs with tasks assigned to the user for today
+                $sql = "SELECT * FROM jobs WHERE job_id IN (SELECT job_id FROM task_assignments WHERE worker_id=?) AND job_id IN (SELECT job_id FROM tasks WHERE task_date=CURDATE())";
+
+                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    echo "Error when preparing SQL statement.";
+                }
+
+                mysqli_stmt_bind_param($stmt, "i", $userId);
+
+                if (!mysqli_stmt_execute($stmt)) {
+                    echo "Error while executing SQL statement";
+                }
+
+                $results = mysqli_stmt_get_result($stmt);
+                while ($row = mysqli_fetch_assoc($results)) {
+                    $jobId = $row["job_id"];
+                    $jobName = $row["job_title"];
+                    $jobDescription = $row["job_description"];
+                    $jobDate = $row["date_started"];
+
+                    ?> 
+                    <div class="worker-content-job">
+                        <div class="worker-content-job-details">
+                            <h1><?php echo $jobName ?></h1>
+                            <p><?php echo $jobDescription ?></p>
+                            <p>Date Created: <?php echo $jobDate ?></p>
+                        </div>
+                        <div>
+                            <h1>Tasks found: </h1>
+                        </div>
+                        <?php
+                        // get tasks for the job that are assigned to the user
+                        $sql = "SELECT * FROM tasks WHERE job_id=? AND task_id IN (SELECT task_id FROM task_assignments WHERE worker_id=?) AND task_date=CURDATE()";
+                        if (!mysqli_stmt_prepare($stmt, $sql)) {
+                            echo "Error when preparing SQL statement.";
+                        }
+
+                        mysqli_stmt_bind_param($stmt, "ii", $jobId, $userId);
+
+                        if (!mysqli_stmt_execute($stmt)) {
+                            echo "Error while executing SQL statement";
+                        }
+
+                        $taskResults = mysqli_stmt_get_result($stmt);
+                        while ($taskRow = mysqli_fetch_assoc($taskResults)) {
+                            $taskId = $taskRow["task_id"];
+                            $taskName = $taskRow["task_name"];
+                            $taskDescription = $taskRow["task_description"];
+                            $taskDate = $taskRow["task_date"];
+                            $taskStatus = $taskRow["status"];
+
+                            ?> 
+                            <div class="worker-content-task">
+                                <div class="worker-content-task-info">
+                                    <h2><?php echo $taskName ?></h2>
+                                    <p><?php echo $taskDescription ?></p>
+                                    <p>Due Date: <?php echo $taskDate ?></p>
+                                </div>
+                                <div class="worker-content-task-buttons">
+                                    <form action="../includes/update-task-status.inc.php" method="post">
+                                        <input type="hidden" name="task-id" value="<?php echo $taskId; ?>">
+                                        <input type="hidden" name="author-id" value="<?php echo $_SESSION["user_id"]; ?>">
+                                        <select name="task-status">
+                                            <option value="started" <?php if ($taskStatus === "started") { echo "selected"; } ?>>Started</option>
+                                            <option value="in progress" <?php if ($taskStatus === "in progress") { echo "selected"; } ?>>In Progress</option>
+                                            <option value="completed" <?php if ($taskStatus === "completed") { echo "selected"; } ?>>Completed</option>
+                                        </select>
+                                        <button type="submit" name="update-task-status">Update Status</button>
+                                    </form>
+                                    <form action="view-task.php" method="get">
+                                        <input type="hidden" name="task-id" value="<?php echo $taskId ?>">
+                                        <input type="hidden" name="job-id" value="<?php echo $jobId ?>">
+                                        <button type="submit">View Task</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                    </div>
+                    <?php
+                }
+                ?>
+            </div>
         </div>
     </div>
 </body>
