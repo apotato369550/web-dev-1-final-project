@@ -161,10 +161,15 @@
                                     <p>Status: <?php echo $taskStatus ?></p>
                                 </div>
                                 <div class="job-task-buttons">
-                                    <form action="view-task.php" method="get">
-                                        <input type="hidden" name="task_id" value="<?php echo $taskId ?>">
-                                        <input type="hidden" name="job_id" value="<?php echo $jobId ?>">
-                                        <button type="submit">View Task</button>
+                                    <form action="../includes/update-task-status.inc.php" method="post">
+                                        <input type="hidden" name="task-id" value="<?php echo $taskId; ?>">
+                                        <input type="hidden" name="author-id" value="<?php echo $_SESSION["user_id"]; ?>">
+                                        <select name="task-status">
+                                            <option value="started" <?php if ($taskStatus === "started") { echo "selected"; } ?>>Started</option>
+                                            <option value="in progress" <?php if ($taskStatus === "in progress") { echo "selected"; } ?>>In Progress</option>
+                                            <option value="completed" <?php if ($taskStatus === "completed") { echo "selected"; } ?>>Completed</option>
+                                        </select>
+                                        <button type="submit" name="update-task-status">Update Status</button>
                                     </form>
                                 </div>
                             </div>

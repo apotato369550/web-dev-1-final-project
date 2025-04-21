@@ -162,11 +162,6 @@
                                         </select>
                                         <button type="submit" name="update-task-status">Update Status</button>
                                     </form>
-                                    <form action="view-task.php" method="get">
-                                        <input type="hidden" name="task-id" value="<?php echo $taskId ?>">
-                                        <input type="hidden" name="job-id" value="<?php echo $jobId ?>">
-                                        <button type="submit">View Task</button>
-                                    </form>
                                 </div>
                             </div>
                             <?php

@@ -126,13 +126,6 @@ nav {
     margin: auto;
 }
 
-.job {
-    display: block;
-}
-
-.task {
-    display: block;
-}
 
 .worker-content-announcement {
     display: flex;
@@ -164,7 +157,7 @@ nav {
     background-color: rgb(255, 255, 255, 0.75);
 }
 
-.worker-content-job {
+.worker-content-job, .job {
     display: flex;
     flex-direction: column;
     border-bottom: #999999 3px solid;
@@ -175,7 +168,7 @@ nav {
     border-bottom: none;
 }
 
-.worker-content-task {
+.worker-content-task, .job-task {
     display: flex;
     flex-direction: row;
     border-bottom: #999999 3px solid;
@@ -184,14 +177,14 @@ nav {
     align-items: center;
 }
 
-.worker-content-task-buttons {
+.worker-content-task-buttons, .job-task-buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.worker-content-task-buttons button {
+.worker-content-task-buttons button, .job-task-buttons button {
     padding: 12px;
     margin: 12px;
     font-size: 1.5rem;
@@ -199,7 +192,7 @@ nav {
     border-radius: 4px;
 }
 
-.worker-content-task-buttons select {
+.worker-content-task-buttons select, .job-task-buttons select {
     padding: 12px;
     margin: 12px;
     font-size: 1.5rem;

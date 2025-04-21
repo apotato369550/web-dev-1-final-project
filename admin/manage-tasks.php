@@ -236,6 +236,7 @@
                                 <form action="../includes/update-task-status.inc.php" method="post">
                                     <input type="hidden" name="task-id" value="<?php echo $taskId; ?>">
                                     <input type="hidden" name="author-id" value="<?php echo $_SESSION["user_id"]; ?>">
+                                    <input type="hidden" name="job-id" value="<?php echo $_GET["job-id"]; ?>">
                                     <select name="task-status">
                                         <option value="started" <?php if ($taskStatus === "started") { echo "selected"; } ?>>Started</option>
                                         <option value="in progress" <?php if ($taskStatus === "in progress") { echo "selected"; } ?>>In Progress</option>
