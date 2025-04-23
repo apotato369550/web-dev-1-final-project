@@ -1004,6 +1004,74 @@ nav {
     border-radius: 4px;
 }
 
+.manage-schedules-container {
+    display: flex;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+}
+
+.manage-schedule {
+    margin: 0px 3vw;
+}
+
+.manage-schedule-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.manage-schedule-controls input {
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.5rem;
+    width: 65vw;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.manage-schedule-controls label {
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+}
+
+.manage-schedule-controls button {
+    padding: 5px;
+    margin: 5px auto;
+    width: 100%;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#manage-schedule-list {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
+.manage-tasks-job {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 65vw;
+    padding: 3vh 3vw;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.75);
+}
+
 @media only screen and (max-width: 1200px) {
     .edit-profile-form-container {
         width: 75vw;

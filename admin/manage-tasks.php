@@ -23,6 +23,96 @@
         <div class="manage-tasks-container">
             <div class="manage-tasks">
                 <div class="manage-tasks-title">
+                    <h1>Manage Job Tasks</h1>
+                </div>
+
+                <div class="manage-tasks-job">
+                    <?php 
+                    include "../includes/dbh.inc.php";
+                    $jobId = $_GET["job-id"];
+                    $sql = "SELECT * FROM jobs WHERE job_id=?";
+                    $stmt = mysqli_stmt_init($connection);
+
+                    if (!mysqli_stmt_prepare($stmt, $sql)) {
+                        echo "Error when preparing SQL statement.";
+                    }
+
+                    mysqli_stmt_bind_param($stmt, "i", $jobId);
+
+                    if (!mysqli_stmt_execute($stmt)) {
+                        echo "Error while executing SQL statement";
+                    }
+
+                    $result = mysqli_stmt_get_result($stmt);
+                    $row = mysqli_fetch_assoc($result);
+                    
+                    $jobId = $row["job_id"];
+                    $jobTitle = $row["job_title"];
+                    $jobDescription = $row["job_description"];
+                    $jobLocation = $row["job_location"];
+                    $jobStatus = $row["job_status"];
+                    $dateStarted = $row["date_started"];
+                    $dateFinished = $row["date_finished"];
+                    ?>
+                    <div class="job">
+                        <div class="job-content">
+                            <h1><?php echo $jobTitle ?></h1>
+                            <p>Date: <?php echo $dateStarted ?></p>
+                            <p>Location: <?php echo $jobLocation ?></p>
+                            <p><?php echo $jobDescription ?></p>
+                            <p>Status: <?php echo $jobStatus ?></p>
+                        </div>
+
+                        <div class="job-workers">
+                            <h2>Workers Assigned</h2>
+                            <?php 
+                            $sql = "SELECT * FROM job_assignments WHERE job_id=?";
+                            $stmt = mysqli_stmt_init($connection);
+
+                            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                                echo "Error when preparing SQL statement.";
+                            }
+
+                            mysqli_stmt_bind_param($stmt, "i", $jobId);
+
+                            if (!mysqli_stmt_execute($stmt)) {
+                                echo "Error while executing SQL statement";
+                            }
+
+                            $result = mysqli_stmt_get_result($stmt);
+                            
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $workerId = $row["worker_id"];
+                                $sql = "SELECT * FROM users WHERE user_id=? AND application_status='approved'";
+                                $stmt = mysqli_stmt_init($connection);
+
+                                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                                    echo "Error when preparing SQL statement.";
+                                } 
+
+                                mysqli_stmt_bind_param($stmt, "i", $workerId);
+
+                                if (!mysqli_stmt_execute($stmt)) {
+                                    echo "Error while executing SQL statement";
+                                } 
+
+                                $workerResult = mysqli_stmt_get_result($stmt);
+                                $workerRow = mysqli_fetch_assoc($workerResult);
+                                
+                                if ($workerRow) {
+                                    $workerUsername = $workerRow["username"];
+                                    ?>  
+                                    <p><?php echo $workerUsername ?></p>
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="manage-tasks-title">
                     <?php 
                     if (isset($_GET["edit"]) && $_GET["edit"] == "true") {
                         ?>
@@ -35,6 +125,7 @@
                     }
                     ?>
                 </div>
+
                 <div class="manage-tasks-form">
                     <?php 
                     // make a form to create a task
