@@ -89,6 +89,6 @@ if (!mysqli_stmt_execute($stmt)) {
     exit();
 }
 
-header("Location: ../admin/manage-jobs.php?success=jobdeleted");
+header("Location: ../admin/manage-jobs.php?delete=success");
 exit();
 

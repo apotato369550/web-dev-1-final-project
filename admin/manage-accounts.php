@@ -23,6 +23,33 @@
         
         <div class="manage-accounts-container">
             <div class="manage-accounts">
+                <div class="action-message">
+                    <?php
+                    if (isset($_GET["error"])) {
+                        $error = $_GET["error"];
+                        if ($error === "sqlprepare") {
+                            echo "<p class='error'>There was an error preparing the SQL statement.</p>";
+                        } elseif ($error === "sqlexecute") {
+                            echo "<p class='error'>There was an error executing the SQL statement.</p>";
+                        } elseif ($error === "accountnotfound") {
+                            echo "<p class='error'>The account you are trying to update does not exist.</p>";
+                        } elseif ($error === "unauthorized") {
+                            echo "<p class='error'>You are not authorized to perform this action.</p>";
+                        } elseif ($error === "nosubmit") {
+                            echo "<p class='error'>No form submission detected.</p>";
+                        }
+                    } else if (isset($_GET["update"])) {
+                        $update = $_GET["update"];
+                        if ($update === "success") {
+                            echo "<p class='success'>Account status updated successfully.</p>";
+                            if (isset($_GET["user-id"])) {
+                                $userId = $_GET["user-id"];
+                            echo "<p class='success'>Account #$userId updated successfully.</p>";
+                            }
+                        }
+                    } 
+                    ?>
+                </div>
                 <div class="manage-accounts-title">
                     <h1>Manage Accounts</h1>
                 </div>

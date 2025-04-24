@@ -19,8 +19,6 @@ include "dbh.inc.php";
 
 // check if author exists
 
-
-
 $sql = "SELECT * FROM users WHERE user_id=? AND user_type='admin'";
 $stmt = mysqli_stmt_init($connection);
 
@@ -40,7 +38,7 @@ $results = mysqli_stmt_get_result($stmt);
 $row = mysqli_fetch_assoc($results);
 
 if (!$row) {
-    header("Location: ../admin/manage-announcements.php?error=noauthor");
+    header("Location: ../admin/manage-announcements.php?error=unauthorized");
     exit();
 }
 
@@ -67,7 +65,7 @@ $results = mysqli_stmt_get_result($stmt);
 $row = mysqli_fetch_assoc($results);
 
 if (!$row) {
-    header("Location: ../admin/manage-announcements.php?error=noauthor");
+    header("Location: ../admin/manage-announcements.php?error=unauthorized");
     exit();
 }
 
@@ -85,5 +83,5 @@ if (!mysqli_stmt_execute($stmt)) {
     exit();
 }
 
-header("Location: ../admin/manage-announcements.php?edit=success");
+header("Location: ../admin/manage-announcements.php?update=success");
 exit();

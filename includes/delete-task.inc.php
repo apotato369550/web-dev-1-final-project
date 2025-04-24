@@ -63,5 +63,5 @@ if (!mysqli_stmt_execute($stmt)) {
     exit();
 }
 
-header("Location: ../admin/manage-tasks.php?job-id=".$jobId."&deletion=success");
+header("Location: ../admin/manage-tasks.php?job-id=".$jobId."&delete=success");
 exit();

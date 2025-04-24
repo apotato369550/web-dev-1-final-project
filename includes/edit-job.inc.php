@@ -141,5 +141,5 @@ foreach ($removedWorkers as $worker) {
 }
 
 
-header("Location: ../admin/manage-jobs.php?success=jobedited");
+header("Location: ../admin/manage-jobs.php?update=success");
 exit();

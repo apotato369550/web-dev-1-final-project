@@ -17,7 +17,7 @@ $sql = "SELECT * FROM users WHERE user_id=? AND user_type='admin'";
 $stmt = mysqli_stmt_init($connection);
 
 if (!mysqli_stmt_prepare($stmt, $sql)) {
-    header("Location: ../admin/manage-jobs.php?error=sqlprepare1");
+    header("Location: ../admin/manage-jobs.php?error=sqlprepare");
     exit();
 }
 
@@ -40,7 +40,7 @@ if ($jobStatus === "finished") {
     $sql = "INSERT INTO jobs (job_author, job_title, job_description, job_location, date_finished, job_status) VALUES (?, ?, ?, ?, NOW(), ?)";
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("Location: ../admin/manage-jobs.php?error=sqlprepare2");
+        header("Location: ../admin/manage-jobs.php?error=sqlprepare");
         exit();
     }
     
@@ -54,7 +54,7 @@ if ($jobStatus === "finished") {
     $sql = "INSERT INTO jobs (job_author, job_title, job_description, job_location, job_status) VALUES (?, ?, ?, ?, ?)";
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("Location: ../admin/manage-jobs.php?error=sqlprepare3");
+        header("Location: ../admin/manage-jobs.php?error=sqlprepare");
         exit();
     }
     
@@ -70,7 +70,7 @@ if ($jobStatus === "finished") {
 $sql = "SELECT * FROM jobs WHERE job_author = ? AND job_title=? AND job_description=? AND job_location=? AND job_status=?";
 
 if (!mysqli_stmt_prepare($stmt, $sql)) {
-    header("Location: ../admin/manage-jobs.php?error=sqlprepare4");
+    header("Location: ../admin/manage-jobs.php?error=sqlprepare");
     exit();
 }
 
@@ -88,7 +88,7 @@ $jobId = $row["job_id"];
 $sql = "DELETE FROM job_assignments WHERE job_id=?";
 
 if (!mysqli_stmt_prepare($stmt, $sql)) {
-    header("Location: ../admin/manage-jobs.php?error=sqlprepare5");
+    header("Location: ../admin/manage-jobs.php?error=sqlprepare");
     exit();
 }
 

@@ -48,4 +48,4 @@ if (!mysqli_stmt_execute($stmt)) {
     exit();
 }
 
-header("Location: ../admin/manage-requests.php?success=changerequeststatus");
+header("Location: ../admin/manage-requests.php?edit=success");

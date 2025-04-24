@@ -35,7 +35,7 @@ $results = mysqli_stmt_get_result($stmt);
 $row = mysqli_fetch_assoc($results);
 
 if (!$row) {
-    header("Location: ../admin/manage-announcements.php?error=noauthor");
+    header("Location: ../admin/manage-announcements.php?error=unauthorized");
     exit();
 }
 

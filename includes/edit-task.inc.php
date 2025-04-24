@@ -82,5 +82,5 @@ foreach ($workersAssigned as $workerId) {
     }
 }
 
-header("Location: ../admin/manage-tasks.php?job-id=".$jobId."&success=taskupdated");
+header("Location: ../admin/manage-tasks.php?job-id=".$jobId."&update=success");
 exit();
