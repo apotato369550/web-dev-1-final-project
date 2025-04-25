@@ -42,17 +42,17 @@
                     } else if (isset($_GET["update"])) {
                         $update = $_GET["update"];
                         if ($update === "success") {
-                            echo "<p class='success'>Job edited successfully.</p>";
+                            echo "<p class='success'>Announcement edited successfully.</p>";
                         }
                     } else if (isset($_GET["create"])) {
                         $create = $_GET["create"];
                         if ($create === "success") {
-                            echo "<p class='success'>Job created successfully.</p>";
+                            echo "<p class='success'>Announcement created successfully.</p>";
                         }
                     } else if (isset($_GET["delete"])) {
                         $delete = $_GET["delete"];
                         if ($delete === "success") {
-                            echo "<p class='success'>Job deleted successfully.</p>";
+                            echo "<p class='success'>Announcement deleted successfully.</p>";
                         }
                     } 
                     ?>

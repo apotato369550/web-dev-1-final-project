@@ -13,7 +13,7 @@ $sql = "SELECT * FROM users WHERE user_id=? AND user_type='admin'";
 $stmt = mysqli_stmt_init($connection);
 
 if (!mysqli_stmt_prepare($stmt, $sql)) {
-    header("Location: ../admin/manage-quotation.php?error=sqlprepare1");
+    header("Location: ../admin/manage-quotation.php?error=sqlprepare");
     exit();
 }
 
@@ -60,10 +60,10 @@ $quotationTitle = $_POST['quotation-name'];
 $quotationLocation = $_POST['quotation-location'];
 $quotationDescription = $_POST['quotation-description'];
 
-$sql = "UPDATE quotations SET quotation_title=?, quotation_location=?, quotation_description=?, last_updated=NOW() WHERE quotation_id=?";
+$sql = "UPDATE quotations SET quotation_name=?, quotation_location=?, quotation_description=?, last_updated=NOW() WHERE quotation_id=?";
 
 if (!mysqli_stmt_prepare($stmt, $sql)) {
-    header("Location: ../admin/manage-quotation.php?error=sqlprepare3");
+    header("Location: ../admin/manage-quotation.php?error=sqlprepare");
     exit();
 }
 
@@ -74,5 +74,5 @@ if (!mysqli_stmt_execute($stmt)) {
     exit();
 }
 
-header("Location: ../admin/manage-quotation.php?edit=success");
+header("Location: ../admin/manage-quotation.php?quotation-id=".$quotationId."&edit=true&update=success");
 exit();

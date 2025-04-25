@@ -22,6 +22,39 @@
         ?>
         <div class="manage-schedule-container">
             <div class="manage-schedule">
+                <div class="action-message">
+                    <?php
+                    if (isset($_GET["error"])) {
+                        $error = $_GET["error"];
+                        if ($error === "sqlprepare") {
+                            echo "<p class='error'>There was an error preparing the SQL statement.</p>";
+                        } elseif ($error === "sqlexecute") {
+                            echo "<p class='error'>There was an error executing the SQL statement.</p>";
+                        } elseif ($error === "accountnotfound") {
+                            echo "<p class='error'>The account you are trying to update does not exist.</p>";
+                        } elseif ($error === "unauthorized") {
+                            echo "<p class='error'>You are not authorized to perform this action.</p>";
+                        } elseif ($error === "nosubmit") {
+                            echo "<p class='error'>No form submission detected.</p>";
+                        }
+                    } else if (isset($_GET["update"])) {
+                        $update = $_GET["update"];
+                        if ($update === "success") {
+                            echo "<p class='success'>Quotation edited successfully.</p>";
+                        }
+                    } else if (isset($_GET["create"])) {
+                        $create = $_GET["create"];
+                        if ($create === "success") {
+                            echo "<p class='success'>Quotation created successfully.</p>";
+                        }
+                    } else if (isset($_GET["delete"])) {
+                        $delete = $_GET["delete"];
+                        if ($delete === "success") {
+                            echo "<p class='success'>Quotation deleted successfully.</p>";
+                        }
+                    } 
+                    ?>
+                </div>
                 <div class="manage-schedule-title">
                     <h1>Select Schedule</h1>
                 </div>
@@ -89,7 +122,7 @@
         function displayTasks(tasks) {
             manageScheduleList.innerHTML = ""; // Clear previous tasks
             if (tasks.length === 0) {
-                manageScheduleList.innerHTML = "<p>No tasks found for the selected date range.</p>";
+                manageScheduleList.innerHTML = "<p class='error'>No tasks found for the selected date range.</p>";
                 return;
             }
             tasks.forEach(task => {

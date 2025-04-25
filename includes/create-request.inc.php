@@ -50,5 +50,5 @@ if (!mysqli_stmt_execute($stmt)) {
     exit();
 }
 
-header("Location: ../client/manage-requests.php?creation=success");
+header("Location: ../client/manage-requests.php?create=success");
 exit();

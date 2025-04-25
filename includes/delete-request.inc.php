@@ -29,7 +29,7 @@ $results = mysqli_stmt_get_result($stmt);
 $row = mysqli_fetch_assoc($results);
 
 if (!$row) {
-    header("Location: ../client/manage-requests.php?error=usernotfound&authorid=".$authorId);
+    header("Location: ../client/manage-requests.php?error=unauthorized");
     exit();
 }
 
@@ -47,5 +47,5 @@ if (!mysqli_stmt_execute($stmt)) {
     exit();
 }
 
-header("Location: ../client/manage-requests.php?deletion=success");
+header("Location: ../client/manage-requests.php?delete=success");
 exit();
