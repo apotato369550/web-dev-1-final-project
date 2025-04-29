@@ -21,7 +21,7 @@ nav {
 .nav-title h1 {
     font-size: 2.5rem;
     font-weight: 1600;
-    font-family: "Courier New", Courier, monospace;
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .nav-dropdown-menu {
@@ -67,7 +67,7 @@ nav {
 
 .nav-dropdown-button p {
     margin: 10px 3px;
-    font-family: "Courier New", Courier, monospace;
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.25rem;
     font-weight: 1000;
 }
@@ -93,7 +93,7 @@ nav {
 .nav-dropdown-content a {
     text-decoration: none;
     color: black;
-    font-family: "Courier New", Courier, monospace;
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.25rem;
     font-weight: 1000;
     margin: 0px 0px 15px 0px;
