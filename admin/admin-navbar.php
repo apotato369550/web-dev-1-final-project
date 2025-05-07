@@ -18,7 +18,7 @@
     }
 ?>
 
-<nav>
+<nav class="admin-main-navbar">
     <script type="text/javascript">
         function openMenu() {
             let navbarContent = document.querySelector(".nav-dropdown-content");
