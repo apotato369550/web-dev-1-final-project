@@ -248,18 +248,27 @@ body {
   color: green;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 780px) {
   .index-main-container {
     flex-direction: column;
   }
   .index-login-container {
     width: 100vw;
+    height: 100vh;
   }
   .index-image-container {
     width: 100vw;
+    height: 100vh;
+    margin-top: 10vh;
+  }
+  .index-button-container {
+    width: 75vw;
+  }
+  .index-button-container button {
+    width: 100%;
   }
   .index-login {
-    margin: 23vh 10vw;
+    margin: 0vh 10vw 10vh 10vw;
   }
   .index-login input {
     width: 75vw;
@@ -272,9 +281,13 @@ body {
   }
   .register-container {
     flex-direction: column;
+    width: 75vw;
   }
   .register-title-container {
     width: 50vw;
+  }
+  .register-title-container h1 {
+    font-size: 3rem;
   }
   .register-form-container {
     width: 100vw;
@@ -293,9 +306,23 @@ body {
   }
   .check-status-container {
     flex-direction: column;
+    width: 75vw;
+  }
+  .check-status-container {
+    flex-direction: column;
+    width: 75vw;
+  }
+  .check-status-container input {
+    width: 60vw;
+  }
+  .check-status-container button {
+    width: 60vw;
   }
   .check-status-title-container {
     width: 100%;
+  }
+  .check-status-title-container h1 {
+    font-size: 3rem;
   }
   .check-status-form-container {
     width: 100%;
