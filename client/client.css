@@ -9,6 +9,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #efefef;
+  line-height: 1;
 }
 
 nav {
@@ -171,7 +172,7 @@ nav {
 
 .edit-profile-form-container {
   margin: auto;
-  width: 30vw;
+  width: 50vw;
   padding: 3vh 3vw;
   border-radius: 12px;
   background-color: rgba(255, 255, 255, 0.75);
@@ -314,6 +315,7 @@ nav {
     }
     body {
         font-size: 0.75em;
+        line-height: 1.5;
     }
     .edit-profile-form-container {
         width: 75vw;
@@ -332,12 +334,6 @@ nav {
         border-bottom: 3px solid #999;
         height: 50vh;
     }
-
-    .edit-profile-form-container {
-        width: 75vw;
-        text-align: center;
-    }
-
     .request {
         display: flex;
         flex-direction: column;
@@ -345,5 +341,10 @@ nav {
 
     .announcement {
         flex-direction: column;
+    }
+    .edit-profile-form-container {
+        display: flex;
+        flex-direction: column;
+        width: 75vw;
     }
 }

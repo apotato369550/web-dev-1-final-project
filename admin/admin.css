@@ -206,7 +206,7 @@ nav {
     flex-direction: row;
     flex-wrap: wrap;
     margin: auto;
-    width: 30vw;
+    width: 50vw;
     padding: 3vh 3vw;
     border-radius: 12px;
     background-color: rgba(255, 255, 255, 0.75);
@@ -641,6 +641,11 @@ nav {
         flex-direction: column;
     }
     .manage-quotations-list, .manage-quotations-requests-list {
+        width: 75vw;
+    }
+    .edit-profile-form-container {
+        display: flex;
+        flex-direction: column;
         width: 75vw;
     }
 }
