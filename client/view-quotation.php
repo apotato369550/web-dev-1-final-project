@@ -3,24 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="client.css">
     <title>View Quotation - Cebu Best Value Trading</title>
 </head>
 <body>
-    
     <?php
     session_start();
-    if (empty($_SESSION["user_type"]) || $_SESSION["user_type"] != "admin") {
+    if (empty($_SESSION["user_type"]) || $_SESSION["user_type"] != "client") {
         header("Location: ../index.php?error=unauthorized");
         exit();
     }
 
-    include "admin-navbar.php";
+    include "client-navbar.php";
     ?>
     <div class="content">
-        <?php
-        include "admin-sidebar.php";
-        ?>
         <div class="view-quotation-container">
             <div class="view-quotation">
                 <div class="view-quotation-title">
@@ -30,7 +26,7 @@
                     <?php
                     $quotationId = $_GET["quotation-id"];
                     if (empty($quotationId)) {
-                        echo "quotation not found.";
+                        echo "Quotation not found.";
                     }
                     include "../includes/dbh.inc.php";
                     $sql = "SELECT * FROM quotations WHERE quotation_id=?";
@@ -50,7 +46,7 @@
                     $row = mysqli_fetch_assoc($results);
 
                     if (!$row) {
-                        echo "quotation not found";
+                        echo "Quotation not found";
                     } else {
                         $quotationName = $row["quotation_name"];
                         $quotationLocation = $row["quotation_location"];
@@ -58,7 +54,7 @@
                         $dateCreated = $row["date_created"];
                         $lastUpdated = $row["last_updated"];
                         
-                        ?>  
+                        ?>
                         <h1><?php echo $quotationName ?></h1>
                         <h2>Location: <?php echo $quotationLocation ?></h2>
                         <p>Description: <?php echo $quotationDescription ?></p>
@@ -67,7 +63,6 @@
                         <?php
                     }
                     ?>
-                    <a href="manage-quotations.php">Return to manage quotations page</a>
                 </div>
                 <div class="view-quotation-title">
                     <h1>Quotation Items</h1>
@@ -115,7 +110,6 @@
                 </div>
             </div>
         </div>
-        
     </div>
 </body>
 </html>

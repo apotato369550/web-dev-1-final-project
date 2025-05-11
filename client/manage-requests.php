@@ -240,6 +240,48 @@
 
                 ?>
             </div>
+            <div class="manage-requests-title">
+                <h1>View Created Quotations</h1>
+            </div>
+            <div class="manage-requests-quotations">
+                <?php 
+                include "../includes/dbh.inc.php";
+            
+                $stmt = mysqli_stmt_init($connection);
+                $sql = "SELECT * from quotations WHERE client_id=? ORDER BY date_created DESC";
+            
+                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    echo "Error when preparing SQL statement.";
+                }
+                
+                mysqli_stmt_bind_param($stmt, "i", $_SESSION["user_id"]);
+
+                if (!mysqli_stmt_execute($stmt)) {
+                    echo "Error while executing SQL statement";
+                }
+            
+                $results = mysqli_stmt_get_result($stmt);
+
+                while ($row = mysqli_fetch_assoc($results)) {
+                    $quotationId = $row["quotation_id"];
+                    $clientId = $row["client_id"];
+                    $dateCreated = $row["date_created"];
+                    ?>
+                    <div class="quotation">
+                        <div class="quotation-info">
+                            <h1>Quotation ID: <?php echo $quotationId ?></h1>
+                            <p>Date Created: <?php echo $dateCreated ?></p>
+                        </div>
+                        <form action="view-quotation.php" method="get">
+                            <input type="hidden" name="quotation-id" value="<?php echo $quotationId ?>">
+                            <button type="submit">View Quotation</button>
+                        </form>
+                    </div>
+                    <?php
+                }
+
+                ?>
+            </div>
         </div>
     </div>
 </body>

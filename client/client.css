@@ -107,12 +107,14 @@ nav {
 
 .client-content-container,
 .edit-profile-container,
-.manage-requests-container {
+.manage-requests-container,
+.view-quotation-container {
   display: flex;
   width: 100vw;
   margin: 0;
   padding: 0;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .client-content,
@@ -128,9 +130,13 @@ nav {
 
 .client-content-announcement,
 .client-content-jobs,
-.manage-requests-interface {
+.manage-requests-interface,
+.manage-requests-quotations,
+.view-quotation-info {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
   margin: auto;
   width: 65vw;
   padding: 3vh 3vw;
@@ -216,16 +222,17 @@ nav {
   border-radius: 4px;
 }
 
-.request {
+.request, .quotation {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   margin: 12px;
   padding: 12px;
 }
 
 .request-info {
-  line-height: 0.75;
+  line-height: 1;
   width: 50%;
 }
 
@@ -238,13 +245,16 @@ nav {
 
 .request-status-select button,
 .request-status-select option,
-.request-status-select select {
+.request-status-select select,
+.quotation button {
   padding: 12px;
   margin: 12px;
   font-size: 1.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+/* continue styling quotation items and stuff */
 
 .manage-requests-form {
   flex-direction: column;
