@@ -60,6 +60,7 @@
                         <p>Description: <?php echo $quotationDescription ?></p>
                         <p>Date Created: <?php echo $dateCreated ?></p>
                         <p>Last Updated: <?php echo $lastUpdated ?></p>
+                        <a href="manage-requests.php">Go back to "Manage Requests" Page</a>
                         <?php
                     }
                     ?>
